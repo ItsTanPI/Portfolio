@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "gsap": "^3.13.0",
     "postprocessing": "^6.37.1",
     "three": "^0.174.0"
   }

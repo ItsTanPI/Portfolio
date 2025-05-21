@@ -11,8 +11,8 @@ RectAreaLightUniformsLib.init();
 const loader = new GLTFLoader();
 // Setup DRACO Loader
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/'); // Use Google's hosted decoder
-dracoLoader.setDecoderConfig({ type: 'js' }); // Use WebAssembly if supported
+dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+dracoLoader.setDecoderConfig({ type: 'js' });
 loader.setDRACOLoader(dracoLoader);
 
 const loadingScreen = document.createElement('div');
@@ -212,7 +212,6 @@ function updateProgress(modelPath, loaded, total) {
         totalBytes += total; 
         trackedFiles.add(modelPath);
         modelProgress.set(modelPath, 0); 
-        console.log(`Total Bytes Updated: ${totalBytes}`);
     }
 
     let lastLoaded = modelProgress.get(modelPath) || 0; 
@@ -231,13 +230,32 @@ rectLight.position.set(-0.99, 1.23, 1.23);
 rectLight.rotation.set(0, THREE.MathUtils.degToRad(140+68), 0); 
 scene.add(rectLight);
 
+const baseX = 0;
+const baseY = 1;
+const baseZ = 7.66;
+
 camera.position.set(0, 1, 7.66);
+
+
 var Flicker;
 scene.fog = new THREE.FogExp2(0x1e1e45, 0.05);
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
     Flicker = Math.random();
+
+    const time = performance.now() * 0.001;
+
+    
+    const wobbleX = Math.sin(time * 0.5) * 0.02;
+    const wobbleY = Math.cos(time * 0.3) * 0.015;
+    const wobbleZ = Math.sin(time * 0.4) * 0.01;
+
+    camera.position.set(
+        baseX + wobbleX,
+        baseY + wobbleY,
+        baseZ + wobbleZ
+    );
 
     rectLight.intensity = 30+(Flicker*30);
     scene.traverse((child) => {
@@ -250,4 +268,6 @@ function animate() {
             child.material.uniforms.Flicker.value = Flicker;
         }
     });
+
+    
 }
