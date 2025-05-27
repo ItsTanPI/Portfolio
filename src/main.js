@@ -18,34 +18,60 @@ loader.setDRACOLoader(dracoLoader);
 const loadingScreen = document.createElement('div');
 loadingScreen.classList.add('loading-screen');
 loadingScreen.innerHTML = `
-<div class="range" style="--p:0">
-    <div class="range__label"></div>
+<div class="rangeLoad" style="--p:0">
+    <div class="rangeLoad__label"></div>
 </div>
 `;
 document.body.appendChild(loadingScreen);
-const progressBar = document.querySelector('.range');
+const progressBar = document.querySelector('.rangeLoad');
+
+const renderer = new THREE.WebGLRenderer({ antialias: false,
+    powerPreference: "high-performance" });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
+const scene = new THREE.Scene();
+
+let dosPlayer;
+var dosCanvas;
+
+Dos(document.getElementById("dos"), {url:"Game/SYSRA.zip", autoStart: true});
+function waitForCanvas() 
+{
+    let checkInterval = setInterval(() => 
+    {
+        let canvas = document.getElementById("dos").querySelector("canvas"); 
+        if (canvas) 
+        {
+            document.getElementById("dos").classList.add('hidediv');
+            console.log("Canvas found:", canvas);
+            dosCanvas = canvas
+            
+            clearInterval(checkInterval); 
+            // callback(canvas); 
+        }
+    }, 100);
+}
 
 
 Promise.all([
-        loadScene('models/Scene-200KB.glb'),
-        loadModelWithShader('models/Screen-30KB.glb', [-1.23, 1.03, 0.54], [0, -68, 0], true) ])
-        .then(([finalModel, screenModel]) => {
-            scene.add(finalModel);
-            scene.add(screenModel);
+    loadScene('models/Scene-200KB.glb'),
+    loadModelWithShader('models/Screen-30KB.glb', [-1.23, 1.03, 0.54], [0, -68, 0], true) ])
+    .then(([finalModel, screenModel]) => {
+        scene.add(finalModel);
+        scene.add(screenModel);
 
-            progressBar.style.setProperty('--p', 100);
-            document.body.querySelector('.loading-screen').remove();
+        progressBar.style.setProperty('--p', 100);
+        document.body.querySelector('.loading-screen').remove()
             animate();
         })
         .catch((error) => console.error('Error loading models:', error));
+        
+        waitForCanvas() 
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(23, window.innerWidth / window.innerHeight, 0.1, 40);
 
 async function loadModelWithShader(path, position, rotation, useShader) {
@@ -69,7 +95,6 @@ async function loadModelWithShader(path, position, rotation, useShader) {
                             textureLoader.loadAsync('textures/Roughness.png'),
                             textureLoader.loadAsync('textures/Metallic.png')
                         ]);
-
                         const textureAspect = new THREE.Vector2(
                             baseColorMap.image.width,
                             baseColorMap.image.height
@@ -239,6 +264,28 @@ camera.position.set(0, 1, 7.66);
 
 var Flicker;
 scene.fog = new THREE.FogExp2(0x1e1e45, 0.05);
+
+var dosTexture = new THREE.CanvasTexture(dosCanvas); 
+function captureCanvas(mat) {
+    if(true) {
+        dosTexture.dispose(); 
+        dosTexture = new THREE.CanvasTexture(dosCanvas);
+        dosTexture.needsUpdate = true; 
+        //texture.magFilter = THREE.NearestFilter;
+        //texture.minFilter = THREE.NearestFilter;
+        mat.uniforms.myTexture.value = dosTexture;
+        mat.uniforms.textureAspect.value = new THREE.Vector2(
+            dosTexture.image.width,
+            dosTexture.image.height
+        );
+    }
+}
+
+navigator.gpu?.requestAdapter().then(adapter => {
+    console.log("GPU:", adapter?.name); // Check for Intel or AMD Vega here
+});
+
+    
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
@@ -266,8 +313,7 @@ function animate() {
         ) {
             child.material.uniforms.time.value += 0.02;
             child.material.uniforms.Flicker.value = Flicker;
+            captureCanvas(child.material);
         }
-    });
-
-    
+    });    
 }

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "gsap": "^3.13.0",
+    "js-dos": "^8.3.19",
     "postprocessing": "^6.37.1",
     "three": "^0.174.0"
   }
