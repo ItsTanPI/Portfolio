@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 
 
@@ -12,8 +13,10 @@
     <style>
         #dos 
         {
-            width: 100%;
-            height: 100%;
+            width: 320px;
+            height: 200px;
+            visibility: hidden;
+
         }
 
         .aspect-overlay 
@@ -39,34 +42,41 @@
             visibility: hidden;
         }
 
+        image-data
+        {
+            visibility: hidden;
+        }
     </style>
 
     <title>Portfolio</title>
-  <script type="module" crossorigin src="/Portfolio/assets/index-BNsBzg-t.js"></script>
-  <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-BYvlzYiC.css">
+  <script type="module" crossorigin src="/Portfolio/assets/index-DNHHuL-N.js"></script>
+  <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-xPsGQ5Fi.css">
 </head>
 <body>
     <!-- Dos Box -->
     <div id="dos"></div>
     <!-- Page  -->
     
+    <div class="focus-frame">
+        <div class="bottom-left"></div>
+        <div class="bottom-right"></div>
+    </div>
+    
+    
     
     <div id="PageContainer">
         <div id="Title"></div>
-        <div id="Content"></div>
+        <div id="Content">
+        </div>
     </div>
     
-    <div id = 'Intro' isActive="False">TanPi</div>
-    <a id="GoTanpi" href="#tanpi">Go</a>
+    <div id = 'Intro' data-isActive="true" data-text="Tanpi">TanPi</div>
+    <div id="GoTanpi" data-target="node-tanpi" data-text="Go">Go</div>
 
 
     <!-- Node Definitions -->
     <div id="node-tanpi" class="node">
         <div class="node-name">TanPi</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
         <div class="node-content">
             <div class="child-link" data-target="node-about"> About</div>
             <div class="child-link" data-target="node-games">Games</div>
@@ -79,8 +89,8 @@
     <div id="node-about" class="node">
         <div class="node-name">About</div>
         <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
+            <image-url>textures/Profile.png</image-url>
+            <common-color>#cccccc</common-color>
         </image-data>
         <div class="node-content">
             <p><strong>Name:</strong>Shri Hari (a.k.a TanPi)</p>
@@ -101,10 +111,6 @@
     <!-- Games node -->
     <div id="node-games" class="node">
         <div class="node-name">Games</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
         <div class="node-content">
             <div class="child-link" data-target="node-overclocked">Overclocked</div>
             <div class="child-link" data-target="node-escapevector">Escape Vector</div>
@@ -118,8 +124,8 @@
     <div id="node-overclocked" class="node">
         <div class="node-name">Overclocked</div>
         <image-data>
-            <image-url>assets/images/overclocked.png</image-url>
-            <common-color>#0088cc</common-color>
+            <image-url>textures/Overclocked.png</image-url>
+            <common-color>#0000ff</common-color>
         </image-data>
         <div class="node-content">
             <p>Cyberpunk styled fast-paced boss rush shooter.</p>
@@ -129,8 +135,8 @@
     <div id="node-escapevector" class="node">
         <div class="node-name">Escape Vector</div>
         <image-data>
-            <image-url>assets/images/overclocked.png</image-url>
-            <common-color>#0088cc</common-color>
+            <image-url>textures/Escapevector.png</image-url>
+            <common-color>#ff0000</common-color>
         </image-data>
         <div class="node-content">
             <p>Fight the bad guys in an 80's inspired action game.</p>
@@ -140,20 +146,19 @@
     <div id="node-stormsahoy" class="node">
         <div class="node-name">Storms Ahoy</div>
         <image-data>
-            <image-url>assets/images/overclocked.png</image-url>
-            <common-color>#0088cc</common-color>
+            <image-url>textures/Stromahoy.png</image-url>
+            <common-color>#880000</common-color>
         </image-data>
         <div class="node-content">
             <p>Battle sea monsters in the 1600s in this shooter game.</p>
         </div>
     </div>
 
-
     <div id="node-sysra" class="node">
         <div class="node-name">Sysra</div>
         <image-data>
-            <image-url>assets/images/sysra.png</image-url>
-            <common-color>#ff5500</common-color>
+            <image-url>textures/Sysra.jpg</image-url>
+            <common-color>#eeeeee</common-color>
         </image-data>
         <div class="node-content">
             <p>Scale Objects and enemy to finish the Level.</p>
@@ -163,8 +168,8 @@
     <div id="node-paperwar" class="node">
         <div class="node-name">Paper-War</div>
         <image-data>
-            <image-url>assets/images/realmshift.png</image-url>
-            <common-color>#113377</common-color>
+            <image-url>textures/paperwar.png</image-url>
+            <common-color>#ffffff</common-color>
         </image-data>
         <div class="node-content">
             <p>Engage in endless fighting in this action-packed game.</p>
@@ -174,8 +179,8 @@
     <div id="node-realmshift" class="node">
         <div class="node-name">Realmshift</div>
         <image-data>
-            <image-url>assets/images/realmshift.png</image-url>
-            <common-color>#113377</common-color>
+            <image-url>textures/Realmshift.png</image-url>
+            <common-color>#ffffcc</common-color>
         </image-data>
         <div class="node-content">
             <p>Exchange timelines to defeat the boss in this action game.</p>
@@ -185,10 +190,6 @@
     <!-- Projects node -->
     <div id="node-projects" class="node">
         <div class="node-name">Projects</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
         <div class="node-content">
             <div class="child-link" data-target="node-piengine">Pi-Engine</div>
             <div class="child-link" data-target="node-sysraasm">Sysra.asm</div>
@@ -202,10 +203,7 @@
     
     <div id="node-piengine" class="node">
         <div class="node-name">Pi-Engine</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
+       
         <div class="node-content">
             <p>A custom-built 2D game engine focused on performance, modularity, and full control over rendering and gameplay systems. Written in Java with OpenGL and ImGui integration, PiEngine features a hot-reloadable component system, JSON-based scene serialization, a flexible input abstraction layer, and a graph-based render pipeline. It’s built from the ground up for learning, game jams, and low-level experimentation.</p>
         </div>
@@ -213,10 +211,6 @@
     
     <div id="node-sysraasm" class="node">
         <div class="node-name">Sysra.asm</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
         <div class="node-content">
             <p>A retro-style platformer engine built entirely in 8086 Assembly, SYSRA runs on DOS and emulates a full game loop with custom sprite rendering, tilemaps, physics, animation, and input — all without relying on high-level libraries. Designed for precision and hardware-level control, SYSRA demonstrates what’s possible with pure assembly and a passion for pushing limits.</p>
         </div>
@@ -224,10 +218,6 @@
     
     <div id="node-ai-racing-sim" class="node">
         <div class="node-name">AI-Racing-Sim</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
         <div class="node-content">
             <p>This project is built using Python, Pygame, and Gymnasium. It features a car racing game with AI-controlled cars navigating through randomly generated race tracks. The AI cars are currently under development and will be capable of driving autonomously once trained.</p>
         </div>
@@ -236,8 +226,8 @@
     <div id="node-2durp-godrays" class="node">
         <div class="node-name">2DURP-GodRays</div>
         <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
+            <image-url>textures/Godrays.png</image-url>
+            <common-color>#FFFFFF</common-color>
         </image-data>
         <div class="node-content">
             <p>2DURP GodRays is a post-processing shader designed to add a God Rays effect, particularly in 2D scenes. This effect simulates light scattering through a medium, creating visually striking rays of light that enhance the atmosphere of your game.</p>
@@ -246,10 +236,6 @@
     
     <div id="node-physics-engine" class="node">
         <div class="node-name">Physics-Engine</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
         <div class="node-content">
             <p>A Physics Engine developed using C++ and OpenGL, designed to simulate basic physics. This engine allows users to apply fundamental physics principles, making it suitable for creating simple physics-based games like Flappy Bird.</p>
         </div>
@@ -257,10 +243,6 @@
     
     <div id="node-vending-machine-simulation" class="node">
         <div class="node-name">Vending Machine Simulation</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
         <div class="node-content">
             <p>A comprehensive full-stack web application simulating a vending machine system. This project covers user interaction, wallet management, sales history, and admin functionalities.</p>
         </div>
@@ -268,10 +250,6 @@
     
     <div id="node-wiki-interactive" class="node">
         <div class="node-name">Wiki-Interactive</div>
-        <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
-        </image-data>
         <div class="node-content">
             <p>Wiki-Interactive is a dynamic and engaging webpage designed to educate and entertain users about our solar system. The site features a playful, cartoon-style design aimed at children and those young at heart. The project utilizes core web technologies, including HTML, CSS, and JavaScript, along with the Matter.js library for physics simulation and rendering.</p>
         </div>
