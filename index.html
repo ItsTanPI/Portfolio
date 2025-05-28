@@ -47,12 +47,20 @@
             visibility: hidden;
         }
     </style>
+    <link rel="icon" type="image/png" href="textures/Profile.png">
 
     <title>Portfolio</title>
-  <script type="module" crossorigin src="/Portfolio/assets/index-DNHHuL-N.js"></script>
-  <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-xPsGQ5Fi.css">
+  <script type="module" crossorigin src="/Portfolio/assets/index-pM1QTD8t.js"></script>
+  <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-CCZjJdbM.css">
 </head>
 <body>
+
+    <div id = "loadingScreen" class="loading-screen">
+        <div class="rangeLoad" style="--p:0">
+            <div class="rangeLoad__label"></div>
+        </div>
+    </div>
+
     <!-- Dos Box -->
     <div id="dos"></div>
     <!-- Page  -->
@@ -73,16 +81,34 @@
     <div id = 'Intro' data-isActive="true" data-text="Tanpi">TanPi</div>
     <div id="GoTanpi" data-target="node-tanpi" data-text="Go">Go</div>
 
+    <div id="instruction">
+        use Arrow keys to control Sysra
+    </div>
+
+    <!-- <div id="controls">
+        <div class="arrow up" onclick="simulateKey('ArrowUp')"></div>
+        <div class="arrow left" onclick="simulateKey('ArrowLeft')"></div>
+        <div class="arrow right" onclick="simulateKey('ArrowRight')"></div>
+    </div> -->
+
 
     <!-- Node Definitions -->
     <div id="node-tanpi" class="node">
         <div class="node-name">TanPi</div>
         <div class="node-content">
+            <div class="child-link" data-target="node-play"> Play</div> 
             <div class="child-link" data-target="node-about"> About</div>
             <div class="child-link" data-target="node-games">Games</div>
             <div class="child-link" data-target="node-projects">Projects</div>
             <div class="child-link" data-target="node-socials">Socials</div>
 
+        </div>
+    </div>
+
+    <!-- Play -->
+    <div id="node-play" class="node">
+        <div class="node-name">Play</div>
+        <div class="node-content">
         </div>
     </div>
 
@@ -108,6 +134,8 @@
             </p>
         </div>
     </div>
+
+
     <!-- Games node -->
     <div id="node-games" class="node">
         <div class="node-name">Games</div>
@@ -158,7 +186,7 @@
         <div class="node-name">Sysra</div>
         <image-data>
             <image-url>textures/Sysra.jpg</image-url>
-            <common-color>#eeeeee</common-color>
+            <common-color>#ffaaee</common-color>
         </image-data>
         <div class="node-content">
             <p>Scale Objects and enemy to finish the Level.</p>
@@ -260,49 +288,50 @@
     <div id="node-socials" class="node">
         <div class="node-name">Socials</div>
         <image-data>
-            <image-url>null</image-url>
-            <common-color>null</common-color>
+            <image-url>textures/TANPI.png</image-url>
+            <common-color>#cccccc</common-color>
         </image-data>
         <div class="node-content">
+            <div class="child-link" data-target="node-itchio">itch.io</div>
             <div class="child-link" data-target="node-github">GitHub</div>
             <div class="child-link" data-target="node-twitter">Twitter</div>
-            <div class="child-link" data-target="node-itchio">itch.io</div>
-        </div>
-    </div>
-
-    <div id="node-github" class="node">
-        <div class="node-name">GitHub</div>
-        <image-data>
-            <image-url>assets/images/github.png</image-url>
-            <common-color>#000000</common-color>
-        </image-data>
-        <div class="node-content">
-            <p><a href="https://github.com/ItsTanPI" target="_blank" rel="noopener noreferrer">github.com/ItsTanPI</a></p>
-        </div>
-    </div>
-
-    <div id="node-twitter" class="node">
-        <div class="node-name">Twitter</div>
-        <image-data>
-            <image-url>assets/images/twitter.png</image-url>
-            <common-color>#1DA1F2</common-color>
-        </image-data>
-        <div class="node-content">
-            <p><a href="https://twitter.com/ItsTanPI" target="_blank" rel="noopener noreferrer">@ItsTanPI</a></p>
         </div>
     </div>
 
     <div id="node-itchio" class="node">
         <div class="node-name">Itch.io</div>
         <image-data>
-            <image-url>assets/images/discord.png</image-url>
-            <common-color>#7289da</common-color>
+            <image-data>
+                <image-url>textures/itch.png</image-url>
+                <common-color>#cccccc</common-color>
+            </image-data>
         </image-data>
         <div class="node-content">
-            <p><a href="https://tan-pi.itch.io" target="_blank" rel="noopener noreferrer">TanPi</a></p>
+            <p><a href="https://tan-pi.itch.io" target="_blank" rel="noopener noreferrer">@Tan-Pi</a></p>
         </div>
     </div>
 
+    <div id="node-github" class="node">
+        <div class="node-name">GitHub</div>
+        <image-data>
+            <image-url>textures/Github.png</image-url>
+            <common-color>#cccccc</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><a href="https://github.com/ItsTanPI" target="_blank" rel="noopener noreferrer">@ItsTanPI</a></p>
+        </div>
+    </div>
+
+    <div id="node-twitter" class="node">
+        <div class="node-name">Twitter</div>
+        <image-data>
+            <image-url>textures/twitter.png</image-url>
+            <common-color>#1DA1F2</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><a href="https://twitter.com/ItsTanPI" target="_blank" rel="noopener noreferrer">@ItsTanPI</a></p>
+        </div>
+    </div>
 
 
 
