@@ -4,7 +4,6 @@ import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLigh
 
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 
-// Create GLTFLoader
 
 
 RectAreaLightUniformsLib.init();
@@ -15,14 +14,7 @@ dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
 dracoLoader.setDecoderConfig({ type: 'js' });
 loader.setDRACOLoader(dracoLoader);
 
-const loadingScreen = document.createElement('div');
-loadingScreen.classList.add('loading-screen');
-loadingScreen.innerHTML = `
-<div class="rangeLoad" style="--p:0">
-    <div class="rangeLoad__label"></div>
-</div>
-`;
-document.body.appendChild(loadingScreen);
+
 const progressBar = document.querySelector('.rangeLoad');
 
 const renderer = new THREE.WebGLRenderer({ antialias: false,
@@ -42,11 +34,11 @@ function waitForCanvas()
         if (canvas) 
         {
             document.getElementById("dos").classList.add('hidediv');
-            console.log("Canvas found:", canvas);
+            // console.log("Canvas found:", canvas);
             dosCanvas = canvas
             
             clearInterval(checkInterval); 
-            // callback(canvas); 
+            animate();
         }
     }, 100);
 }
@@ -54,20 +46,25 @@ function waitForCanvas()
 
 Promise.all([
     loadScene('models/Scene-200KB.glb'),
-    loadModelWithShader('models/Screen-30KB.glb', [-1.23, 1.03, 0.54], [0, -68, 0], true) ])
+    loadModelWithShader('models/Screen-30KB.glb', [-1.23, 1.03, 0.54], [0, -68, 0], true) ]
+    )
     .then(([finalModel, screenModel]) => {
         scene.add(finalModel);
         scene.add(screenModel);
 
         progressBar.style.setProperty('--p', 100);
         document.body.querySelector('.loading-screen').remove()
-            animate();
+        // animate();
         })
         .catch((error) => console.error('Error loading models:', error));
         
-        waitForCanvas() 
+waitForCanvas();
 
-renderer.setSize(window.innerWidth, window.innerHeight);
+
+window.addEventListener('resize', handleResize);
+window.addEventListener('load', handleResize); 
+
+
 document.body.appendChild(renderer.domElement);
 
 renderer.shadowMap.enabled = true;
@@ -193,7 +190,7 @@ async function loadModelWithShader(path, position, rotation, useShader) {
                             }
                         });
 
-                        console.log("Shader applied with correct texture aspect ratio!");
+                        // console.log("Shader applied with correct texture aspect ratio!");
                     } catch (error) {
                         console.error("Error loading textures:", error);
                         reject(error);
@@ -208,7 +205,6 @@ async function loadModelWithShader(path, position, rotation, useShader) {
         );
     });
 }
-
 
 async function loadScene(path) {
     return new Promise((resolve, reject) => {
@@ -253,67 +249,287 @@ function updateProgress(modelPath, loaded, total) {
 const rectLight = new THREE.RectAreaLight(0xcccccc, 50, 0.6, 0.5); 
 rectLight.position.set(-0.99, 1.23, 1.23); 
 rectLight.rotation.set(0, THREE.MathUtils.degToRad(140+68), 0); 
-scene.add(rectLight);
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+if (!isMobile)
+{
+    scene.add(rectLight);
+}
 
-const baseX = 0;
-const baseY = 1;
-const baseZ = 7.66;
+var baseX = 0;
+var baseY = 1;
+var baseZ = 7.66;
 
-camera.position.set(0, 1, 7.66);
+let IntroisActive = false;
+
+var cameraData = {
+    position: null,
+    rotation: null,
+    fov: null
+} 
+
+function handleResize()
+{
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    renderer.setSize(width, height);
+
+    if (camera.isPerspectiveCamera)
+    {
+        const minWidth = 768;   
+        const maxWidth = 1500;  
+
+        const clampedWidth = Math.max(minWidth, Math.min(width, maxWidth));
+        var t = (clampedWidth - minWidth) / (maxWidth - minWidth);
+
+        const targetFOV = THREE.MathUtils.lerp(45, 23, t);
+        const targetRotationY = THREE.MathUtils.degToRad(THREE.MathUtils.lerp(22, 0, t));
+        baseX = THREE.MathUtils.lerp(1.62, 0, t);
+
+        camera.fov = targetFOV;
+        camera.rotation.set(0, targetRotationY, 0);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+
+        cameraData.position = camera.position.clone();
+        cameraData.rotation = camera.rotation.clone(); 
+        cameraData.fov = camera.fov;
+        camera.position.set(baseX, baseY, baseZ)
+
+    }
+}
+
+function lerpCamera(camera, targetPos, targetRot, targetFov, deltaTime, speed = 5)
+{
+    const threshold = 0.000001; 
+
+    if (!camera.position.equals(targetPos))
+    {
+        camera.position.lerp(targetPos, speed * deltaTime);
+
+        if (camera.position.distanceToSquared(targetPos) < threshold * threshold)
+        {
+            camera.position.copy(targetPos);
+        }
+    }
+
+    const targetQuat = new THREE.Quaternion().setFromEuler(targetRot);
+    if (!camera.quaternion.equals(targetQuat))
+    {
+        camera.quaternion.slerp(targetQuat, speed * deltaTime);
+
+        if (1 - camera.quaternion.dot(targetQuat) < threshold)
+        {
+            camera.quaternion.copy(targetQuat);
+        }
+    }
+
+    if (Math.abs(camera.fov - targetFov) > threshold)
+    {
+        camera.fov = THREE.MathUtils.lerp(camera.fov, targetFov, speed * deltaTime);
+
+        if (Math.abs(camera.fov - targetFov) < threshold)
+        {
+            camera.fov = targetFov;
+        }
+        camera.updateProjectionMatrix();
+    }
+}
+
+const geometry = new THREE.PlaneGeometry(5, 5);
+const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+const plane = new THREE.Mesh(geometry, material);
+plane.position.set(-10, 0, 0); // x, y, z
+plane.scale.set(5, 10, 5);
+plane.rotation.y = Math.PI/2 
+scene.add(plane);
 
 
 var Flicker;
 scene.fog = new THREE.FogExp2(0x1e1e45, 0.05);
 
+
 var dosTexture = new THREE.CanvasTexture(dosCanvas); 
-function captureCanvas(mat) {
-    if(true) {
-        dosTexture.dispose(); 
-        dosTexture = new THREE.CanvasTexture(dosCanvas);
-        dosTexture.needsUpdate = true; 
-        //texture.magFilter = THREE.NearestFilter;
-        //texture.minFilter = THREE.NearestFilter;
-        mat.uniforms.myTexture.value = dosTexture;
-        mat.uniforms.textureAspect.value = new THREE.Vector2(
-            dosTexture.image.width,
-            dosTexture.image.height
-        );
+const PageContent = document.getElementById("PageContainer");
+let lastLoadedImageUrl = null;
+const whiteImageUrl = 'textures/TANPI.png';
+let isTransitioning = false;
+let transitionTimer = 0;
+let pendingImageUrl = null;
+var TRANSITION_DURATION = 0.25; // 0.25 seconds
+
+function setTexture(mat, texture)
+{
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.encoding = THREE.sRGBEncoding;
+
+    mat.uniforms.myTexture.value = texture;
+    mat.uniforms.textureAspect.value = new THREE.Vector2(
+        texture.image.width,
+        texture.image.height
+    );
+
+    texture.needsUpdate = true;
+}
+
+function captureCanvas(mat, deltaTime)
+{
+    
+    if (isTransitioning)
+    {
+        mat.uniforms.Flicker.value = 5.0;
+        rectLight.color.set(0xffffff);
+        transitionTimer += deltaTime;
+        if (transitionTimer >= TRANSITION_DURATION && pendingImageUrl && pendingImageUrl != 'game')
+        {
+            const loader = new THREE.TextureLoader();
+            loader.load(pendingImageUrl, (newTex) =>
+            {
+                setTexture(mat, newTex);
+                
+                lastLoadedImageUrl = pendingImageUrl;
+                isTransitioning = false;
+                pendingImageUrl = null;
+            }, 
+            undefined, () =>
+            {
+                isTransitioning = false;
+                pendingImageUrl = null;
+            });
+        }
+        if (pendingImageUrl && pendingImageUrl == 'game')
+        {
+            
+            if(transitionTimer >= TRANSITION_DURATION)
+            {
+                isTransitioning = false;
+                pendingImageUrl = null;
+                lastLoadedImageUrl = null;
+            }
+            
+        }
+        return;
+    }
+    
+    
+    var imageData = PageContent.querySelector('image-data');
+    if (window.sharedData.imageHover != null)
+    {
+        imageData = document.getElementById(window.sharedData.imageHover).querySelector('image-data');
+    }
+
+    if (imageData)
+    {
+        const imageUrl = imageData.querySelector('image-url')?.textContent || null;
+        const commonColor = imageData.querySelector('common-color')?.textContent || null;
+
+        if (commonColor && commonColor !== 'null')
+        {
+            rectLight.color.set(commonColor);
+        }
+
+        if (imageUrl && imageUrl !== 'null' && (imageUrl !== lastLoadedImageUrl))
+        {
+            const loader = new THREE.TextureLoader();
+
+            loader.load(whiteImageUrl, (whiteTex) =>
+            {
+                setTexture(mat, whiteTex);
+                transitionTimer = 0;
+                isTransitioning = true;
+                pendingImageUrl = imageUrl;
+            });
+        }
+    }
+    else if (dosCanvas)
+    {
+        if(lastLoadedImageUrl != null)
+        {
+            const loader = new THREE.TextureLoader();
+
+            loader.load(whiteImageUrl, (whiteTex) =>
+            {
+                setTexture(mat, whiteTex);
+                transitionTimer = 0;
+                isTransitioning = true;
+                pendingImageUrl = 'game';
+            });
+        }
+        else
+        {
+            rectLight.color.set(0xcccccc);
+            dosTexture.dispose();
+            dosTexture = new THREE.CanvasTexture(dosCanvas);
+            dosTexture.minFilter = THREE.NearestFilter;
+            dosTexture.magFilter = THREE.NearestFilter;
+            dosTexture.encoding = THREE.sRGBEncoding;
+            dosTexture.needsUpdate = true;
+    
+            mat.uniforms.myTexture.value = dosTexture;
+            mat.uniforms.textureAspect.value = new THREE.Vector2(
+                dosTexture.image.width,
+                dosTexture.image.height
+            );
+        }
     }
 }
 
-navigator.gpu?.requestAdapter().then(adapter => {
-    console.log("GPU:", adapter?.name); // Check for Intel or AMD Vega here
-});
 
-    
+const clock = new THREE.Clock();    
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
     Flicker = Math.random();
-
-    const time = performance.now() * 0.001;
-
     
-    const wobbleX = Math.sin(time * 0.5) * 0.02;
-    const wobbleY = Math.cos(time * 0.3) * 0.015;
-    const wobbleZ = Math.sin(time * 0.4) * 0.01;
+    const time = performance.now() * 0.001;
+    
+    const deltaTime = clock.getDelta();
 
-    camera.position.set(
-        baseX + wobbleX,
-        baseY + wobbleY,
-        baseZ + wobbleZ
-    );
-
+    if(cameraData.position == null)
+    {
+        console.log("sdf");
+    }
+    
     rectLight.intensity = 30+(Flicker*30);
     scene.traverse((child) => {
         if (
             child.isMesh &&
             child.material instanceof THREE.ShaderMaterial &&
             child.material.uniforms.time
-        ) {
-            child.material.uniforms.time.value += 0.02;
-            child.material.uniforms.Flicker.value = Flicker;
-            captureCanvas(child.material);
+            ) 
+            {
+                child.material.uniforms.time.value += 0.02;
+                child.material.uniforms.Flicker.value = Flicker;
+                captureCanvas(child.material, deltaTime);
         }
-    });    
+    }); 
+
+    if (window.sharedData.isGameOpen)
+    {
+        var tempfov, tempx;
+        if(window.innerWidth > 768)
+        {
+            tempfov = 23;
+            tempx = 1.7;
+        }
+        else
+        {
+            
+            tempx = cameraData.position.x;
+            tempfov = 45;
+        }
+
+        lerpCamera(camera, new THREE.Vector3(tempx, baseY, baseZ), new THREE.Euler(0, THREE.MathUtils.degToRad(22), 0), tempfov, deltaTime);
+    }
+    else
+    {        
+
+        lerpCamera(camera, cameraData.position, cameraData.rotation, cameraData.fov, deltaTime);
+    }
+    renderer.render(scene, camera);
 }
+
+window.addEventListener("DOMContentLoaded", () =>
+{
+    handleResize()
+});
