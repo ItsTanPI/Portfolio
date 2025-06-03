@@ -51,8 +51,8 @@
     <link rel="icon" type="image/png" href="textures/Profile.png">
 
     <title>Portfolio</title>
-  <script type="module" crossorigin src="/Portfolio/assets/index-CQ9YAJsV.js"></script>
-  <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-CgIOxXGB.css">
+  <script type="module" crossorigin src="/Portfolio/assets/index-CAvcPoyg.js"></script>
+  <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-BjIix4xX.css">
 </head>
 <body>
 
@@ -63,9 +63,6 @@
         </div>
     </div>
 
-
-
-    
     <!-- Dos Box -->
     <div id="dos"></div>
     <!-- Page  -->
@@ -76,8 +73,14 @@
     </div> -->
     
     <div id="Backbutton"  style="z-index: 9;" onclick=" ">Back</div>
-
-    
+    <div id = blurToggleHolder>
+        <label class="switch">
+            <input type="checkbox" id="blurToggle">
+            <span class="slider"></span>
+            <span class="label-text">Blur</span>
+        </label>
+    </div>
+  
     <div id="PageContainer">
         <div id="Title"></div>
         <div id="Content"></div>
@@ -92,7 +95,7 @@
     <div id = 'GoTanpi' data-target="node-tanpi" data-text="Go">Go</div>
     
     <div id="instruction">
-        use Arrow keys to control Sysra
+        <p id="tellControls">use Arrow keys to control Sysra</p>
 
         <div id="SysraNote">
             <p>Note: This is 8086 Assembly version of SYSRA </p>
@@ -100,7 +103,6 @@
 
         </div>
     </div>
-
 
     <!-- Node Definitions -->
     <div id="node-tanpi" class="node">
@@ -172,7 +174,7 @@
             <common-color>#0000ff</common-color>
         </image-data>
         <div class="node-content">
-            <p><strong><a href="https://tan-pi.itch.io/overclocked" target="_blank">OverClocked</a></strong> is a fastpaced ThirdPerson Shooter Made for <a href="https://itch.io/jam/boss-rush-jam-2025" target="_blank">Boss Rush Jam 2025</a>. </p>
+            <p><strong><a href="https://tan-pi.itch.io/overclocked" target="_blank">OverClocked</a></strong> is a fastpaced ThirdPerson Shooter Made for <a href="https://itch.io/jam/boss-rush-jam-2025" target="_blank">Boss Rush Jam 2025 </a>(Jan 2025). </p>
             <p>Media:</p>
             <div class="media-container">
                 <img src="https://img.itch.zone/aW1hZ2UvMzI5NTU3Ni8xOTY3ODgyNC5wbmc=/original/YEl2Ql.png" alt="Screenshot 1">
@@ -181,7 +183,7 @@
             </div>
             <p><strong>Tech:</strong>
                 <ul>
-                    <li>Unity3D - Game Engine </li>
+                    <li>Unity (3D) - Game Engine </li>
                     <li>C# - Programming language </li>
                     <li>Blender - 3D Software</li>
                 </ul>
@@ -222,7 +224,7 @@
     
             <p><strong>Tech:</strong>
                 <ul>
-                    <li>Unity3D – Game Engine</li>
+                    <li>Unity (3D) – Game Engine</li>
                     <li>C# – Programming</li>
                     <li>Blender – For 3D buildings and props</li>
                 </ul>
@@ -256,7 +258,7 @@
         <div class="node-content">
             <p><strong><a href="https://troll-lyd.itch.io/storms-ahoy" target="_blank">Storms-Ahoy</a></strong> is a wave-based shooter where you blast sea monsters from your ship deck while surviving incoming chaos.</p>
     
-            <p>This game was made in a team of 6 for the <a href="https://itch.io/jam/brackeys-2024-2" target="_blank">Brackeys Game Jam 2024.2</a>. The jam theme was <strong>"Calm befor Storm"</strong> — and we took that literally... and also with monsters.</p>
+            <p>This game was made in a team of 6 for the <a href="https://itch.io/jam/brackeys-12" target="_blank">Brackeys Game Jam 2024.2</a>. The jam theme was <strong>"Calm befor Storm"</strong> — and we took that literally... and also with monsters.</p>
     
             <p><strong>Media:</strong></p>
             <div class="media-container">
@@ -280,22 +282,51 @@
             <p>You can play it and check it out on <a href="https://troll-lyd.itch.io/storms-ahoy" target="_blank">Itch.io</a>.</p>
     
             <p>
-                <iframe frameborder="0" src="https://itch.io/embed/2973745?linkback=true&amp;bg_color=010023&amp;fg_color=ffffff&amp;link_color=ff1b1b&amp;border_color=333333" width="552" height="167"><a href="https://troll-lyd.itch.io/storms-ahoy">Storms Ahoy!!! by Troll-Lyd, RunnyBabbit, TanPi, Pin0cchi0, DjaackofSpades, J. Isaac Gadient</a></iframe>
+                <iframe id = "ItchRef" frameborder="0" src="https://itch.io/embed/2973745?linkback=true&amp;bg_color=010023&amp;fg_color=ffffff&amp;link_color=ff1b1b&amp;border_color=333333" width="552" height="167"><a href="https://troll-lyd.itch.io/storms-ahoy">Storms Ahoy!!! by Troll-Lyd, RunnyBabbit, TanPi, Pin0cchi0, DjaackofSpades, J. Isaac Gadient</a></iframe>
             </p>
         </div>
     </div>
 
     <div id="node-sysra" class="node">
-        <div class="node-name">Sysra</div>
+        <div class="node-name">SYSRA</div>
         <image-data>
             <image-url>textures/Sysra.jpg</image-url>
-            <common-color>#ffaaee</common-color>
+            <common-color>#ff00aa</common-color>
         </image-data>
         <div class="node-content">
-            <p>Scale Objects and enemy to finish the Level.</p>
+            <p><strong><a href="https://tan-pi.itch.io/sysra" target="_blank">SYSRA</a></strong> is a 2D platformer made for the <a href="https://itch.io/jam/gmtk-2024" target="_blank">GMTK Game Jam 2024</a>. I made it solo in just 4 days — my shortest dev cycle ever for a full game — and it turned out to be my most successful project so far!</p>
+    
+            <p>Media:</p>
+            <div class="media-container">
+                <img src="https://img.itch.zone/aW1hZ2UvMjkxMDkwMS8xNzQ1MjMyNS5wbmc=/original/qK0Bvx.png" alt="SYSRA Screenshot 1">
+                <img src="https://img.itch.zone/aW1hZ2UvMjkxMDkwMS8xNzQ1MjIyMC5wbmc=/original/KSynE8.png" alt="SYSRA Screenshot 2">
+                <img src="https://img.itch.zone/aW1hZ2UvMjkxMDkwMS8xNzQ1MTQ4NS5wbmc=/original/nJSC2n.png" alt="SYSRA Screenshot 3">
+            </div>
+    
+            <p><strong>Tech:</strong>
+                <ul>
+                    <li>Unity (2D) – Game Engine</li>
+                    <li>C# – Programming Language</li>
+                </ul>
+            </p>
+    
+            <p>
+                <strong>What I Did</strong>
+                <p>The theme for the jam was <strong>“Scale,”</strong> so I built level mechanics around resizing objects to navigate puzzles and progress through tight platforming challenges.</p>
+    
+                <p>SYSRA was a crash course in time/resource management. With just 4 days, I had to cut every corner that didn’t hurt gameplay — and still make sure it all looked and felt polished.</p>
+    
+                <p>It taught me how to laser-focus under pressure and deliver results — no fluff, just gameplay that works and feels fun.</p>
+            </p>
+    
+            <p>Web Play & learn more on <a href="https://tan-pi.itch.io/sysra" target="_blank">Itch.io</a></p>
+    
+            <p>
+                <iframe id = "ItchRef" frameborder="0" src="https://itch.io/embed/2910901?linkback=true&amp;bg_color=010023&amp;fg_color=ffffff&amp;link_color=ff1b1b&amp;border_color=333333" width="552" height="167"><a href="https://tan-pi.itch.io/sysra">SYSRA by TanPi</a></iframe>
+            </p>
         </div>
     </div>
-
+    
     <div id="node-paperwar" class="node">
         <div class="node-name">Paper-War</div>
         <image-data>
@@ -303,7 +334,35 @@
             <common-color>#ffffff</common-color>
         </image-data>
         <div class="node-content">
-            <p>Engage in endless fighting in this action-packed game.</p>
+            <p><strong><a href="https://tan-pi.itch.io/paper-war" target="_blank">Paper-War</a></strong> is an endless side-scrolling platformer brawler made in just 7 days for the <a href="https://itch.io/jam/brackeys-9" target="_blank">Brackeys Game Jam 2024.1</a>.</p>
+
+            <p>Media:</p>
+            <div class="media-container">
+                <img src="https://img.itch.zone/aW1hZ2UvMjUzNDAxOC8xNTA3MzI5OC5qcGc=/original/vP9j%2BF.jpg" alt="Screenshot 1"> 
+                <img src="https://img.itch.zone/aW1hZ2UvMjUzNDAxOC8xNTA3MzI5OC5qcGc=/original/vP9j%2BF.jpg" alt="Screenshot 2">
+                <img src="https://img.itch.zone/aW1hZ2UvMjUzNDAxOC8xNTA3MzM1NC5qcGc=/original/Zuukip.jpg" alt="Screenshot 3">
+
+            </div>
+
+            <p><strong>Tech:</strong>
+                <ul>
+                    <li>Unity 2D - Game Engine</li>
+                    <li>C# - Programming language</li>
+                </ul>
+            </p>
+
+            <p><strong>What I Did</strong></p>
+            <p>The main playable character in Paper War is a soft-body fighter — building and tuning that took a lot of time, but it taught me a ton about Unity's 2D physics system, bone rigging, and texture mapping.</p>
+
+            <p>The game features multiple melee weapons like swords, spades, and hammers — each with their own unique properties. You collect these on the go by exploring, opening doors, and defeating enemies.</p>
+
+            <p>This was only my second game jam, and I had an absolute blast. Despite the tight timeline, I managed to polish it well and ship everything within the 7-day deadline.</p>
+
+            <p>Download & learn more on <a href="https://tan-pi.itch.io/paper-war" target="_blank">Itch.io</a></p>
+
+            <p>
+                <iframe id = "ItchRef" frameborder="0" src="https://itch.io/embed/2534018?linkback=true&amp;bg_color=010023&amp;fg_color=ffffff&amp;link_color=ff1b1b&amp;border_color=333333" width="552" height="167"><a href="https://tan-pi.itch.io/paper-war">Paper-War by TanPi</a></iframe>
+            </p>
         </div>
     </div>
 
@@ -314,7 +373,37 @@
             <common-color>#ffffcc</common-color>
         </image-data>
         <div class="node-content">
-            <p>Exchange timelines to defeat the boss in this action game.</p>
+            <p><strong><a href="https://tan-pi.itch.io/realmshift" target="_blank">RealmShift</a></strong> is a top-down boss-rush shooter made in 30 days for the <a href="https://itch.io/jam/boss-rush-jam-2024" target="_blank">Boss Rush Game Jam</a>. It was my very first game jam and marked my return to Unity after a long break.</p>
+            
+            <p>Media:</p>
+            <div class="media-container">
+                <img src="https://img.itch.zone/aW1hZ2UvMjUwMTIyMS8xNDg1OTIyOC5wbmc=/original/fREIfj.png" alt="Screenshot 1"> 
+                <img src="https://img.itch.zone/aW1hZ2UvMjUwMTIyMS8xNDg1OTI3NC5qcGc=/original/l%2BUHAk.jpg" alt="Screenshot 2">
+                <img src="https://img.itch.zone/aW1hZ2UvMjUwMTIyMS8xNDkxNzY3Ni5wbmc=/original/AYwiqz.png" alt="Screenshot 3">
+
+            </div>
+
+            
+            <p><strong>Tech:</strong>
+                <ul>
+                    <li>Unity 2D - Game Engine</li>
+                    <li>C# - Programming language</li>
+                </ul>
+            </p>
+    
+            <p><strong>What I Did</strong></p>
+            <p>With some prior Unity experience, I joined the jam to dive back into game dev — and it paid off big time. I learned a ton about Unity's workflow, game design, and engine architecture.</p>
+    
+            <p>This was the jam where I first explored using shaders, and it opened up a whole new world of creativity for me. I handled everything from design to polish, making sure the game felt solid and complete.</p>
+    
+            <p>Special shoutout to a Discord friend who contributed an amazing soundtrack that players really loved!</p>
+    
+            <p>Try it out on <a href="https://tan-pi.itch.io/realmshift" target="_blank">Itch.io</a></p>
+    
+            <p>
+                <iframe id = "ItchRef" frameborder="0" src="https://itch.io/embed/2501221?linkback=true&amp;bg_color=010023&amp;fg_color=ffffff&amp;link_color=ff1b1b&amp;border_color=333333" width="552" height="167"><a href="https://tan-pi.itch.io/realmshift">Realm Shift by TanPi, Gabriel Vizconde</a></iframe>
+
+            </p>
         </div>
     </div>
 
@@ -435,8 +524,6 @@
             <p><a href="https://twitter.com/ItsTanPI" target="_blank" rel="noopener noreferrer">@ItsTanPI</a></p>
         </div>
     </div>
-
-
 
 </body>
 </html>
