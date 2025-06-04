@@ -1,6 +1,6 @@
 import gsap from "gsap";
 
-
+var isBack = false;
 function decryptText(element, delay = 0, isNav = false)
 {
     const chars = "⡷⣸⠿⣾⢿⣯⣻⠟⠻⡿▚▞▙▛▜▟●◆◇◈✶✸✦✧⟁⧫⬢⬣◍◎◉";
@@ -103,9 +103,15 @@ setInterval(() =>
 }, 2500);
 
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-if (!isMobile)
+if (isMobile)
 {
+    document.getElementById("tellControls").innerHTML = "Cannot be Played on Mobile"
 }
+else
+{
+    document.getElementById("tellControls").innerHTML = "use Arrow keys to control Sysra"
+}
+
 
 const PageContent = document.getElementById("PageContainer");
 function displayNode(nodeId)
@@ -124,6 +130,11 @@ function displayNode(nodeId)
         updateHashFromIds(path);
         
         document.getElementById("instruction").style.visibility = 'visible'
+        const existingImageData = document.querySelector("#PageContainer image-data");
+        const existingVidoeData = document.querySelector("#PageContainer video-data");
+
+        if (existingImageData) existingImageData.remove();
+        if (existingVidoeData) existingVidoeData.remove();
         return;
     }
     else
@@ -142,18 +153,35 @@ function displayNode(nodeId)
     const contentElement = document.getElementById("Content");
 
     const imageData = node.querySelector("image-data");
+    const videoData = node.querySelector("video-data");
+
     const existingImageData = document.querySelector("#PageContainer image-data");
+    const existingVidoeData = document.querySelector("#PageContainer video-data");
+
     if (existingImageData) existingImageData.remove();
+    if (existingVidoeData) existingVidoeData.remove();
+
     if (imageData)
     {
         const clonedImageData = imageData.cloneNode(true);
         PageContent.appendChild(clonedImageData);
     }
+    if (videoData)
+    {
+        const clonedVideoeData = videoData.cloneNode(true);
+        PageContent.appendChild(clonedVideoeData);
+    }
+
+    const oldLinks = contentElement.querySelectorAll(".child-link");
+    oldLinks.forEach(link => {
+        const newLink = link.cloneNode(true); // deep = true by default
+        link.replaceWith(newLink);
+    });
 
     gsap.to([titleElement, contentElement], {
         duration: 0.4,
         opacity: 0,
-        y: -10,
+        y: isBack?10:-10,
         onComplete: () =>
         {
             titleElement.textContent = titleText;
@@ -172,7 +200,7 @@ function displayNode(nodeId)
             attachChildLinkListeners();
 
             gsap.fromTo([titleElement, contentElement],
-                { opacity: 0, y: 10 },
+                { opacity: 0, y: isBack?-10:10},
                 {
                     duration: 0.4,
                     opacity: 1,
@@ -180,6 +208,7 @@ function displayNode(nodeId)
                     ease: "power2.out",
                     onStart: () =>
                     {
+                        isBack = false;
                         decryptText(titleElement, 30);
                     }
 
@@ -249,45 +278,65 @@ window.sharedData = {
     isGameOpen: false,
     imageHover: null
 };
+
+
+let hoverTimeoutStack = [];
+
 function attachChildLinkListeners()
 {
     document.querySelectorAll("#Content .child-link").forEach(link =>
     {
-        let hoverTimeout;
+        const targetId = link.dataset.target;
 
-        link.onclick = () =>
+        const clearAllHoverTimeouts = () =>
         {
-            clearTimeout(hoverTimeout);
+            hoverTimeoutStack.forEach(timeoutID => clearTimeout(timeoutID));
             window.sharedData.imageHover = null;
-            const targetId = link.dataset.target;
-            displayNode(targetId);
+            hoverTimeoutStack = [];
         };
+
+        if (link.dataset.link == null)
+        {
+            link.onclick = () =>
+            {
+                // console.log(hoverTimeoutStack);
+                clearAllHoverTimeouts();
+                displayNode(targetId);
+            };
+        }
+        else
+        {
+            link.onclick = () =>
+            {
+                clearAllHoverTimeouts();
+                window.open(link.dataset.link, '_blank');
+            };
+        }
 
         link.onmouseenter = () =>
         {
-            const targetId = link.dataset.target;
-
-            clearTimeout(hoverTimeout);
-
-            hoverTimeout = setTimeout(() =>
+            
+            const timeoutID = setTimeout(() =>
             {
                 window.sharedData.imageHover = targetId;
             }, 500);
+
+            hoverTimeoutStack.push(timeoutID);
         };
 
         link.onmouseleave = () =>
         {
-            clearTimeout(hoverTimeout);
-
-            hoverTimeout = setTimeout(() =>
+            const timeoutID = setTimeout(() =>
             {
                 window.sharedData.imageHover = null;
             }, 500);
+
+            hoverTimeoutStack.push(timeoutID);
         };
     });
-
-    
 }
+
+
 
 
 
@@ -301,6 +350,7 @@ function animate()
     const pathIds = getCurrentPathIds();
     const introDiv = document.getElementById("Intro");
     const goTanpiDiv = document.getElementById("GoTanpi");
+
 
     if (pathIds.length === 0)
     {
@@ -328,11 +378,12 @@ function animate()
                 { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1)", delay: 0.2 }
             );
 
-            clearDisplayNode();
         }
+        clearDisplayNode();
     }
     else
     {
+        if(pathIds[pathIds.length-1] == "#play") clearDisplayNode();
         document.getElementById("Backbutton").style.display = ''
 
         if (introVisible && !animationPlaying)
@@ -373,11 +424,57 @@ window.addEventListener("DOMContentLoaded", async () =>
     document.getElementById("Intro").style.display = 'none'; 
     document.getElementById("GoTanpi").style.display = 'none'; 
     handleHashChange();
+    BlurButtonHandle();
     await playin();
 });
 
+
+function BlurButtonHandle()
+{
+    const blurToggle = document.getElementById("blurToggle");
+    const pageContainer = document.getElementById("PageContainer");
+
+    if(isMobile)
+    {
+        const saved = localStorage.getItem("blurEnabled");
+        if(saved == null) {blurToggle.checked = false; console.log("sd");}
+        else if (saved === "false") blurToggle.checked = false;
+        else  blurToggle.checked = true;
+        applyBlur(blurToggle.checked);
+    }
+    else
+    {
+        blurToggle.checked = false;
+        applyBlur(blurToggle.checked);
+    }
+
+    
+
+    blurToggle.addEventListener("change", () =>
+    {
+        const isBlurEnabled = blurToggle.checked;
+        applyBlur(isBlurEnabled);
+        localStorage.setItem("blurEnabled", isBlurEnabled);
+    });
+
+    function applyBlur(enabled)
+    {
+        if (enabled)
+        {
+            pageContainer.classList.add("blur-enabled");
+        }
+        else
+        {
+            pageContainer.classList.remove("blur-enabled");
+        }
+    }
+}
+
+
+
 async function playin() 
 {
+    window.sharedData.imageHover = null;
     let condition = true;
     while (condition) 
     {
@@ -398,4 +495,30 @@ document.getElementById("GoTanpi").addEventListener("click", () =>
 {
     const targetId = document.getElementById("GoTanpi").dataset.target;    
     displayNode(targetId);
+});
+
+function popLastHash()
+{
+    const hash = location.hash;
+    const parts = hash.split('#').filter(Boolean); // removes empty string from first '#'
+    
+    parts.pop();
+    location.hash = parts.length ? '#' + parts.join('#') : '';
+}
+
+
+document.getElementById("Backbutton").addEventListener("click", () =>
+{
+    const list = getCurrentPathIds();
+    
+    if (list.length >= 2)
+    {
+        isBack = true;
+        popLastHash(); 
+    }
+    else if (list.length == 1)
+    {
+        isBack = true;
+        popLastHash();
+    }
 });

@@ -1,31 +1,42 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
-
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 
+window.sharedData = {
+    isGameOpen: false,
+    imageHover: null
+};
+window.sharedData.imageHover = null;
+window.sharedData.isGameOpen = false;
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
 
 RectAreaLightUniformsLib.init();
 const loader = new GLTFLoader();
+const textureLoader = new THREE.TextureLoader();
+
 // Setup DRACO Loader
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
 dracoLoader.setDecoderConfig({ type: 'js' });
 loader.setDRACOLoader(dracoLoader);
 
-
 const progressBar = document.querySelector('.rangeLoad');
-
-const renderer = new THREE.WebGLRenderer({ antialias: false,
-    powerPreference: "high-performance" });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
+const renderer = new THREE.WebGLRenderer({ antialias: true,
+    powerPreference: "high-performance", alpha: false, preserveDrawingBuffer: false
+});
+renderer.shadowMap.enabled = false;
 const scene = new THREE.Scene();
 
-let dosPlayer;
 var dosCanvas;
 
-Dos(document.getElementById("dos"), {url:"Game/SYSRA.zip", autoStart: true});
+if (!isMobile) 
+{
+    Dos(document.getElementById("dos"), {url:"Game/SYSRA.zip", autoStart: true});
+}
+
+
 function waitForCanvas() 
 {
     let checkInterval = setInterval(() => 
@@ -34,18 +45,17 @@ function waitForCanvas()
         if (canvas) 
         {
             document.getElementById("dos").classList.add('hidediv');
-            // console.log("Canvas found:", canvas);
             dosCanvas = canvas
             
-            clearInterval(checkInterval); 
-            animate();
         }
+        clearInterval(checkInterval); 
+        animate();
     }, 100);
 }
 
 
 Promise.all([
-    loadScene('models/Scene-200KB.glb'),
+    loadScene('models/Scene-400KB.glb'),
     loadModelWithShader('models/Screen-30KB.glb', [-1.23, 1.03, 0.54], [0, -68, 0], true) ]
     )
     .then(([finalModel, screenModel]) => {
@@ -53,22 +63,16 @@ Promise.all([
         scene.add(screenModel);
 
         progressBar.style.setProperty('--p', 100);
-        document.body.querySelector('.loading-screen').remove()
-        // animate();
-        })
-        .catch((error) => console.error('Error loading models:', error));
-        
-waitForCanvas();
-
+        document.body.querySelector('.loading-screen').remove();
+        waitForCanvas();
+    })
+    .catch((error) => console.error('Error loading models:', error));
 
 window.addEventListener('resize', handleResize);
 window.addEventListener('load', handleResize); 
 
-
 document.body.appendChild(renderer.domElement);
 
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 const camera = new THREE.PerspectiveCamera(23, window.innerWidth / window.innerHeight, 0.1, 40);
 
 async function loadModelWithShader(path, position, rotation, useShader) {
@@ -80,13 +84,12 @@ async function loadModelWithShader(path, position, rotation, useShader) {
                 model.position.set(...position);
                 model.rotation.set(...rotation.map(deg => THREE.MathUtils.degToRad(deg)));
                 model.scale.set(1, 0.95, 0.95);
-                model.castShadow = true;
-                model.receiveShadow = true;
+                model.castShadow = false;
+                model.receiveShadow = false;
                 resolve(gltf.scene);
 
                 if (useShader) {
                     try {
-                        const textureLoader = new THREE.TextureLoader();
                         const [baseColorMap, roughnessMap, metallicMap] = await Promise.all([
                             textureLoader.loadAsync('textures/TANPI.png'),
                             textureLoader.loadAsync('textures/Roughness.png'),
@@ -249,7 +252,6 @@ function updateProgress(modelPath, loaded, total) {
 const rectLight = new THREE.RectAreaLight(0xcccccc, 50, 0.6, 0.5); 
 rectLight.position.set(-0.99, 1.23, 1.23); 
 rectLight.rotation.set(0, THREE.MathUtils.degToRad(140+68), 0); 
-const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 if (!isMobile)
 {
     scene.add(rectLight);
@@ -259,8 +261,6 @@ var baseX = 0;
 var baseY = 1;
 var baseZ = 7.66;
 
-let IntroisActive = false;
-
 var cameraData = {
     position: null,
     rotation: null,
@@ -269,10 +269,11 @@ var cameraData = {
 
 function handleResize()
 {
-    const width = window.innerWidth;
+    const width = window.innerWidth
     const height = window.innerHeight;
 
     renderer.setSize(width, height);
+    baseX = 0;
 
     if (camera.isPerspectiveCamera)
     {
@@ -291,11 +292,21 @@ function handleResize()
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
 
+        camera.position.set(baseX, baseY, baseZ)
         cameraData.position = camera.position.clone();
         cameraData.rotation = camera.rotation.clone(); 
         cameraData.fov = camera.fov;
-        camera.position.set(baseX, baseY, baseZ)
+        // console.log(cameraData);
 
+    }
+
+    if(!isMobile)
+    {
+        document.getElementById("blurToggleHolder").style.display = "none";
+    }
+    else
+    {
+        document.getElementById("blurToggleHolder").style.display = "";
     }
 }
 
@@ -350,6 +361,11 @@ scene.fog = new THREE.FogExp2(0x1e1e45, 0.05);
 
 
 var dosTexture = new THREE.CanvasTexture(dosCanvas); 
+
+const video = document.getElementById( 'video' );
+var videoTexture = new THREE.VideoTexture( video );
+videoTexture.colorSpace = THREE.SRGBColorSpace;
+
 const PageContent = document.getElementById("PageContainer");
 let lastLoadedImageUrl = null;
 const whiteImageUrl = 'textures/TANPI.png';
@@ -369,116 +385,281 @@ function setTexture(mat, texture)
         texture.image.width,
         texture.image.height
     );
+}
 
-    texture.needsUpdate = true;
+function getRelativePath(fullUrl) 
+{
+    const origin = window.location.origin + "/Portfolio";
+    return fullUrl.startsWith(origin) ? fullUrl.replace(origin + '/', '') : fullUrl;
+}
+
+const fpsBuffer = [];
+const deltaBuffer = [];
+const maxSamples = 60;
+
+function FPSstats(deltaTime)
+{
+    const fps = Math.floor(1 / deltaTime);
+
+    // Push new data
+    fpsBuffer.push(fps);
+    deltaBuffer.push(deltaTime);
+
+    // Keep only the latest 60 entries
+    if (fpsBuffer.length > maxSamples)
+    {
+        fpsBuffer.shift();
+        deltaBuffer.shift();
+    }
+
+    // Calculate averages
+    const avgFPS = fpsBuffer.reduce((a, b) => a + b, 0) / fpsBuffer.length;
+    const avgDelta = deltaBuffer.reduce((a, b) => a + b, 0) / deltaBuffer.length;
+
+    // Update UI
+    document.getElementById("FPS").innerText = 
+        "FPS: " + String(Math.floor(avgFPS)).padStart(3, '0') + 
+        " | Δt " + (avgDelta*1000).toFixed(1) + "ms";// + (window.devicePixelRatio*0.7).toFixed(1);    
 }
 
 function captureCanvas(mat, deltaTime)
 {
-    
+    const imageDataRoot = window.sharedData.imageHover 
+        ? document.getElementById(window.sharedData.imageHover) 
+        : PageContent;
+
+        const imageData = imageDataRoot?.querySelector('image-data');
+        const videoData = imageDataRoot?.querySelector('video-data');
+        
+        // FPS display (disabled)
+        FPSstats(deltaTime)
+        // console.log(renderer.info.memory.textures);
+        
+    // console.log("isTransitioning: " + isTransitioning + "   " + "Hover: " + window.sharedData.imageHover + "  Image :" + imageData.querySelector('image-url')?.textContent|| null);
     if (isTransitioning)
     {
-        mat.uniforms.Flicker.value = 5.0;
-        rectLight.color.set(0xffffff);
-        transitionTimer += deltaTime;
-        if (transitionTimer >= TRANSITION_DURATION && pendingImageUrl && pendingImageUrl != 'game')
-        {
-            const loader = new THREE.TextureLoader();
-            loader.load(pendingImageUrl, (newTex) =>
-            {
-                setTexture(mat, newTex);
-                
-                lastLoadedImageUrl = pendingImageUrl;
-                isTransitioning = false;
-                pendingImageUrl = null;
-            }, 
-            undefined, () =>
-            {
-                isTransitioning = false;
-                pendingImageUrl = null;
-            });
-        }
-        if (pendingImageUrl && pendingImageUrl == 'game')
-        {
-            
-            if(transitionTimer >= TRANSITION_DURATION)
-            {
-                isTransitioning = false;
-                pendingImageUrl = null;
-                lastLoadedImageUrl = null;
-            }
-            
-        }
+        handleTransition(mat, deltaTime);
         return;
     }
-    
-    
-    var imageData = PageContent.querySelector('image-data');
     if (window.sharedData.imageHover != null)
     {
-        imageData = document.getElementById(window.sharedData.imageHover).querySelector('image-data');
-    }
-
-    if (imageData)
-    {
-        const imageUrl = imageData.querySelector('image-url')?.textContent || null;
-        const commonColor = imageData.querySelector('common-color')?.textContent || null;
-
-        if (commonColor && commonColor !== 'null')
+        if (imageData)
         {
-            rectLight.color.set(commonColor);
+            handleImageData(mat, imageData);
         }
-
-        if (imageUrl && imageUrl !== 'null' && (imageUrl !== lastLoadedImageUrl))
+        else if (videoData)
         {
-            const loader = new THREE.TextureLoader();
-
-            loader.load(whiteImageUrl, (whiteTex) =>
+            handleVideoData(mat, videoData);
+        }
+        else if (dosCanvas)
+        {
+            if (mat.uniforms.myTexture.value) 
             {
-                setTexture(mat, whiteTex);
-                transitionTimer = 0;
-                isTransitioning = true;
-                pendingImageUrl = imageUrl;
-            });
+                mat.uniforms.myTexture.value.dispose();
+            }
+            handleDosCanvas(mat);
         }
     }
-    else if (dosCanvas)
+    else
     {
-        if(lastLoadedImageUrl != null)
+        if (videoData)
         {
-            const loader = new THREE.TextureLoader();
-
-            loader.load(whiteImageUrl, (whiteTex) =>
+            handleVideoData(mat, videoData);
+        }
+        else if (imageData)
+        {
+            handleImageData(mat, imageData);
+        }
+        else if (dosCanvas)
+        {
+            if (mat.uniforms.myTexture.value) 
             {
+                mat.uniforms.myTexture.value.dispose();
+            }
+            handleDosCanvas(mat);
+        }
+        else
+        {
+            textureLoader.load(whiteImageUrl, (whiteTex) =>
+            {
+                mat.uniforms.myTexture.value.dispose();
                 setTexture(mat, whiteTex);
                 transitionTimer = 0;
                 isTransitioning = true;
                 pendingImageUrl = 'game';
             });
+
         }
-        else
+    }    
+}
+
+function handleTransition(mat, deltaTime)
+{
+    mat.uniforms.Flicker.value = 5.0;
+    rectLight.color.set(0xffffff);
+    transitionTimer += deltaTime;
+
+    if (transitionTimer < TRANSITION_DURATION) return;
+
+    if (!pendingImageUrl)
+    {
+        resetTransitionState();
+        return;
+    }
+
+    if (pendingImageUrl === 'game')
+    {
+        completeTransition('game');
+        return;
+    }
+
+    if (pendingImageUrl.startsWith('video'))
+    {
+        const videoURL = pendingImageUrl.slice(5);
+        completeTransition('video' + getRelativePath(video.src));
+        return;
+    }
+
+    textureLoader.load(
+        pendingImageUrl,
+        (newTex) =>
         {
-            rectLight.color.set(0xcccccc);
-            dosTexture.dispose();
-            dosTexture = new THREE.CanvasTexture(dosCanvas);
-            dosTexture.minFilter = THREE.NearestFilter;
-            dosTexture.magFilter = THREE.NearestFilter;
-            dosTexture.encoding = THREE.sRGBEncoding;
-            dosTexture.needsUpdate = true;
-    
-            mat.uniforms.myTexture.value = dosTexture;
-            mat.uniforms.textureAspect.value = new THREE.Vector2(
-                dosTexture.image.width,
-                dosTexture.image.height
-            );
+            mat.uniforms.myTexture.value.dispose();
+            setTexture(mat, newTex);
+            lastLoadedImageUrl = pendingImageUrl;
+            pendingImageUrl = null;
+            resetTransitionState();
+        },
+        undefined,
+        () =>
+        {
+            resetTransitionState();
+            lastLoadedImageUrl = null;
         }
+    );
+}
+
+function handleImageData(mat, imageData)
+{
+    const imageUrl = imageData.querySelector('image-url')?.textContent || null;
+    const commonColor = imageData.querySelector('common-color')?.textContent || null;
+
+    if (commonColor && commonColor !== 'null')
+    {
+        rectLight.color.set(commonColor);
+    }
+
+
+    if (imageUrl && imageUrl !== 'null' && imageUrl !== lastLoadedImageUrl)
+    {
+        textureLoader.load(whiteImageUrl, (whiteTex) =>
+        {
+            mat.uniforms.myTexture.value.dispose();
+            setTexture(mat, whiteTex);
+            transitionTimer = 0;
+            isTransitioning = true;
+            pendingImageUrl = imageUrl;
+        });
     }
 }
 
+function handleVideoData(mat, videoData)
+{
+    const videoURL = videoData.querySelector('video-url')?.textContent || null;
+
+    const isDifferentVideo = 
+        lastLoadedImageUrl && lastLoadedImageUrl.startsWith('video') && lastLoadedImageUrl.slice(5) !== videoURL;
+
+    if ( lastLoadedImageUrl && (isDifferentVideo || !lastLoadedImageUrl.startsWith('video')))
+    {
+
+        video.src = videoURL;
+        textureLoader.load(whiteImageUrl, (whiteTex) =>
+        {
+            mat.uniforms.myTexture.value.dispose();
+            setTexture(mat, whiteTex);
+            transitionTimer = 0;
+            isTransitioning = true;
+            pendingImageUrl = 'video' + videoURL;
+        });
+    }
+    else
+    {
+        lastLoadedImageUrl = 'video' + videoURL;
+        video.play();
+
+        const commonColor = videoData.querySelector('common-color')?.textContent || null;
+        if (commonColor && commonColor !== 'null')
+        {
+            rectLight.color.set(commonColor);
+        }
+
+        mat.uniforms.myTexture.value = videoTexture;
+        mat.uniforms.textureAspect.value = new THREE.Vector2(video.videoWidth, video.videoHeight);
+    }
+}
+
+function handleDosCanvas(mat)
+{
+    if (lastLoadedImageUrl && lastLoadedImageUrl !== 'game')
+    {
+        textureLoader.load(whiteImageUrl, (whiteTex) =>
+        {
+            mat.uniforms.myTexture.value.dispose();
+            setTexture(mat, whiteTex);
+            transitionTimer = 0;
+            isTransitioning = true;
+            pendingImageUrl = 'game';
+        });
+    }
+    else
+    {
+        rectLight.color.set(0xcccccc);
+
+        if (dosTexture) dosTexture.dispose();
+
+        dosTexture = new THREE.CanvasTexture(dosCanvas);
+        dosTexture.needsUpdate = true;
+        lastLoadedImageUrl = 'game';
+
+        video.pause();
+        video.currentTime = 0;
+
+        mat.uniforms.myTexture.value = dosTexture;
+        mat.uniforms.textureAspect.value = new THREE.Vector2(dosTexture.image.width, dosTexture.image.height);
+    }
+}
+
+function resetTransitionState()
+{
+    isTransitioning = false;
+    pendingImageUrl = null;
+}
+
+function completeTransition(url)
+{
+    lastLoadedImageUrl = url;
+    resetTransitionState();
+}
 
 const clock = new THREE.Clock();    
-function animate() {
+function animate() 
+{
     requestAnimationFrame(animate);
+    if (isMobile) 
+    {
+        const blurToggle = document.getElementById("blurToggle");
+        if(blurToggle.checked)
+        {
+            renderer.setPixelRatio(0.3);
+        }   
+        else
+        {
+            renderer.setPixelRatio(1);
+        } 
+    }
+
+    videoTexture.needsUpdate = true;
     Flicker = Math.random();
     
     const time = performance.now() * 0.001;
@@ -487,7 +668,7 @@ function animate() {
 
     if(cameraData.position == null)
     {
-        console.log("sdf");
+        handleResize();
     }
     
     rectLight.intensity = 30+(Flicker*30);
@@ -510,7 +691,7 @@ function animate() {
         if(window.innerWidth > 768)
         {
             tempfov = 23;
-            tempx = 1.7;
+            tempx = 1.65;
         }
         else
         {
@@ -531,5 +712,5 @@ function animate() {
 
 window.addEventListener("DOMContentLoaded", () =>
 {
-    handleResize()
+    handleResize();
 });

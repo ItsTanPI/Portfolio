@@ -3,6 +3,7 @@ body
 {
     margin: 0;
     overflow: hidden;
+    user-select: none;    
 }
 
 @font-face 
@@ -13,8 +14,22 @@ body
     font-style: italic;
 }
 
+/* Anchor tag */
+a
+{
+    color: #ff0000;
+}
 
-/* Main container (right-side on desktop, full on mobile) */
+#FPS
+{
+    position: absolute;
+    top: 0%;
+    padding: 0 0 0 1% ;
+    font-family: 'TypeLight';
+    color: white;
+    z-index: 11;
+}
+
 #PageContainer 
 {
     position: absolute;
@@ -39,6 +54,8 @@ body
     user-select: none;
     font-family: 'TypeLight';
     color: white;
+    height: 5rem;
+    white-space: wrap;
 }
 
 
@@ -67,7 +84,7 @@ body
     font-family: 'TypeLight';
     font-size: 7rem;
     color: white; /* fallback color */
-
+    
     padding: 0 5% 0;
     border: 10px solid white;
     text-align:center;
@@ -95,8 +112,8 @@ body
     text-align:center;
     align-items: center;
     transform: translate(50%, -50%);
-    left: -2%;
-    top: 7%;
+    right: 10%;
+    top: 12%;
 
     transition: 0.3s ease-in-out;
 
@@ -115,29 +132,34 @@ body
     text-align: justify;
 }
 
+
 /* Mobile responsiveness */
 @media (max-width: 1080px) 
 {
+    #FPS
+    {
+        padding: 0 0 0 5%;
+    }
     #PageContainer 
     {
 
         width: 100vw;
         height: 100vh;
-        padding: 2rem;
+        padding: 1.5rem;
     }
 
     #Title 
     {
-
         padding: 1rem 0 0 0rem;
-        font-size: 3rem;
+        font-size: 2.5rem;
+        height: 3rem;
     }
 
     #Content 
     {
+        top: 0%;
         font-size: 1rem;
     }
-
     #Intro
     {
         position: absolute;
@@ -187,13 +209,25 @@ body
     font-family: 'TypeLight';
     color: white;
     font-size: 2rem;
+    height: 4rem;
     cursor: pointer;
     transition: color 0.3s ease;
     transform-origin: center center;
     padding: 2% 0 2% 0;
     transition: 0.5s ease-in-out;
+    width: max-content;
+}
 
-
+.anchor-link 
+{
+    font-family: 'TypeLight';
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    transform-origin: center center;
+    padding: 2% 0 2% 0;
+    transition: 0.5s ease-in-out;
 }
 
 #Instruction 
@@ -206,13 +240,51 @@ body
     text-align: center;
     transform: translate(-50%);
     width: 100%;
+    height: 100%;
+
     padding: 2% 0 2% 0;
     left: 50%;
+}
+#SysraNote
+{
+    position: absolute;
+    font-family: 'TypeLight';
+    color: white;
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+    text-align: center;
+    transform: translate(-50%);
+    width: 100%;
+    padding: 2% 0 2% 0;
+    left: 50%;
+    top: 80%;
+}
+
+#ItchRef
+{
+    width: 552px
+}
+
+@media (max-width: 768px) 
+{
+    #ItchRef
+    {
+        width: 100%
+    }
 }
 
 @media (max-width: 1080px) 
 {
     .child-link 
+    {
+        font-size: 1.75rem;
+        padding: 2vh 0 2vh 0;
+        height: 3.5rem;
+
+    }
+
+
+    .anchor-link 
     {
         font-size: 1.75rem;
         padding: 2vh 0 2vh 0;
@@ -224,14 +296,35 @@ body
         font-size: 1rem;
         top: 20%;
     }
+
+    #SysraNote
+    {
+        font-size: 1rem;
+        left: 50%;
+        top: 55%;
+    }
 }
 
+
+#node-socials .child-link:hover 
+{
+    color: #ff0000;
+    font-size: 2.5rem;
+}
 
 .child-link:hover 
 {
     color: #7f5af0;
     font-size: 2.5rem;
 }
+
+
+.anchor-link:hover 
+{
+    color: #7f5af0;
+    font-size: 2.5rem;
+}
+
 
 #GoTanpi:hover 
 {
@@ -250,6 +343,10 @@ body
     display: none; /* Hidden by default */
 }
 
+video-data
+{
+    display: none;
+}
 
 /* Frame */
 .focus-frame {
@@ -257,7 +354,7 @@ body
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    /* background-color: rgba(0, 0, 255, 0.1); */
+    background-color: rgba(0, 0, 255, 0.5);
 }
 
 /* Top left */
@@ -377,10 +474,114 @@ body
     }
 
 
-a
+#Hello
 {
     color: white;
     font-size: 3rem;
     font-style: "TypeLight";
 }
 
+.media-container
+{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+}
+
+.media-container > * 
+{
+    flex: 0 0 auto;
+    max-height: 150px;
+    border-radius: 8px;
+    scroll-snap-align: start;
+}
+
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    margin: 1em;
+    color: white; /* makes label text white */
+}
+
+.switch input {
+    display: none;
+}
+
+#dos
+{
+    position: absolute;
+}
+
+#blurToggleHolder
+{
+    position: absolute;
+    top: 2px;
+    right: 0%;
+    padding: 0% 1% 0 0% ;
+    z-index: 11;
+    font-family: 'TypeLight';
+    color: white;
+    text-align: right   ;
+}
+
+
+.slider 
+{
+    width: 40px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 20px;
+    position: relative;
+    transition: border-color 0.3s;
+}
+
+.slider::before 
+{
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50%;
+    top: 2;
+    left: 2px;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+input:checked + .slider 
+{
+    border-color: white;
+    background-color: rgba(0, 0, 35, 1);
+}
+
+input:checked + .slider::before 
+{
+    transform: translateX(20px);
+    background-color: white;
+}
+
+.label-text {
+    font-size: 16px;
+    color: white;
+}
+
+.blur-enabled
+{
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px);
+}
