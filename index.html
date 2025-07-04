@@ -75,6 +75,7 @@
     </div> -->
     
     <div id="Backbutton"  style="z-index: 9;" onclick=" ">Back</div>
+    
     <div id = blurToggleHolder>
         <label class="switch">
             <input type="checkbox" id="blurToggle">
@@ -413,70 +414,360 @@
     <div id="node-projects" class="node">
         <div class="node-name">Projects</div>
         <div class="node-content">
+            <div class="child-link" data-target="node-portfolio">Portfolio</div>
             <div class="child-link" data-target="node-piengine">Pi-Engine</div>
             <div class="child-link" data-target="node-sysraasm">Sysra.asm</div>
             <div class="child-link" data-target="node-ai-racing-sim">AI-Racing-Sim</div>
             <div class="child-link" data-target="node-2durp-godrays">2DURP-GodRays</div>
             <div class="child-link" data-target="node-physics-engine">Physics-Engine</div>
-            <div class="child-link" data-target="node-vending-machine-simulation">Vending Machine Simulation</div>
+            <div class="child-link" data-target="node-vending-machine-simulation">Vending Machine</div>
             <div class="child-link" data-target="node-wiki-interactive">Wiki-Interactive</div>
         </div>
     </div>
     
-    <div id="node-piengine" class="node">
-        <div class="node-name">Pi-Engine</div>
-       
+    <div id="node-portfolio" class="node">
+        <div class="node-name">Portfolio</div>
         <div class="node-content">
-            <p>A custom-built 2D game engine focused on performance, modularity, and full control over rendering and gameplay systems. Written in Java with OpenGL and ImGui integration, PiEngine features a hot-reloadable component system, JSON-based scene serialization, a flexible input abstraction layer, and a graph-based render pipeline. It’s built from the ground up for learning, game jams, and low-level experimentation.</p>
+          <p><strong><a href="https://itstanpi.github.io/Portfolio/" target="_blank">Portfolio</a></strong> is my personal interactive web portfolio built entirely from scratch. It serves as both a showcase of my projects and a live demonstration of my skills in frontend graphics, animation, and creative presentation. The entire UI is rendered with WebGL using Three.js and animated using GSAP, giving it a dynamic, game-like feel.</p>
+      
+          <p><strong>Tech:</strong>
+            <ul>
+              <li><strong>Three.js</strong> – for rendering custom 3D nodes, interactive transitions, and smooth WebGL-powered visuals.</li>
+              <li><strong>GSAP (GreenSock)</strong> – driving fluid animations between scenes, flips, and hover interactions.</li>
+              <li><strong>Vite</strong> – modern build toolchain for rapid development and optimized builds.</li>
+              <li><strong>JavaScript / HTML / CSS</strong> – for logic, styling, and layout structure.</li>
+            </ul>
+          </p>
+      
+          <p><strong>What I Did</strong></p>
+          <ul>
+            <li>Designed a node-based layout system resembling Unity’s Inspector, where each section (Games, Projects, About) is modular and interactively expandable.</li>
+            <li>Used Three.js to create a lightweight custom renderer for 3D.</li>
+            <li>Implemented GSAP timelines for all major UI animations, including entrance transitions, node expansions, and hover states.</li>
+            <li>Embedded a fully playable DOSBox-powered version of <strong>SYSRA</strong> within the site using a dynamic iframe system — allowing visitors to play the game directly inside the portfolio.</li>
+            <li>Built the system with Vite for blazing-fast hot module reload and clean build outputs.</li>
+          </ul>
+      
+          <p><strong>What Makes It Unique</strong></p>
+          <ul>
+            <li>The portfolio itself is a living project — not just a static list, but an interactive playground demonstrating WebGL, UI/UX, and real-time animation skills.</li>
+            <li>Playable content like SYSRA adds an extra layer of engagement and allows visitors to directly experience my work without navigating away.</li>
+            <li>Highly optimized: lightweight assets, lazy loading of nodes, and smooth animations even on mid-tier devices.</li>
+          </ul>
+      
+          <p>Visit the live site at <a href="https://itstanpi.github.io/" target="_blank">itstanpi.github.io</a> and explore projects the way I intended them to be experienced — interactively, playfully, and with a touch of 3D flair.</p>
+        </div>
+    </div>
+
+    <div id="node-piengine" class="node">
+        <div class="node-name">Pi‑Engine</div>
+        <div class="node-content">
+            <p><strong><a href="https://github.com/ItsTanPI/Pi-Engine" target="_blank">Pi‑Engine</a></strong> is a custom 2D game engine built in Java, crafted to support modular game development. It features a rendering pipeline, entity-component system, scene management, real-time input handling, and GUI overlays—with everything structured for flexibility and performance.</p>
+
+            <p><strong>Tech:</strong>
+            <ul>
+                <li><strong>Java 11+</strong> – core engine logic, entity-management, and event handling.</li>
+                <li><strong>LWJGL / OpenGL</strong> – rendering textured sprites, tilemaps, and GUI overlays.</li>
+                <li><strong>Component-System (CS)</strong> – modular architecture with reusable components and systems.</li>
+                <li><strong>Scene Graph</strong> – hierarchical scene structure with update/render separation.</li>
+                <li><strong>Input Handling</strong> – keyboard and mouse events with customizable bindings.</li>
+                <li><strong>Resource Management</strong> – efficient loading and caching of textures, fonts, and SVG-like assets.</li>
+                <li><strong>ImGui-Java integration</strong> – debug overlays for real-time scene inspection and profiling.</li>
+            </ul>
+            </p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+            <li>Designed an Component-System architecture with decoupled logic for rendering, physics, input, and UI systems.</li>
+            <li>Built a rendering pipeline using LWJGL and OpenGL, handling sprite batching, z-order, and camera transforms.</li>
+            <li>Implemented scene loading from JSON definitions for entities, components, and prefab data.</li>
+            <li>Integrated immediate-mode GUI via ImGui-Java to inspect entity hierarchies, component values, and live profiler stats.</li>
+            <li>Created hot-reloadable systems enabling live tweaking of assets and logic at runtime.</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+            <li>Designing robust Component-System workflows and managing component lifecycle across varied systems.</li>
+            <li>Building efficient rendering loops.</li>
+            <li>Loading and parsing scene definitions, assets, and entity prefabs dynamically.</li>
+            <li>Using ImGui to create developer tools that enhance workflow and debugging visibility.</li>
+            <li>Structuring a game engine with modular, extensible systems—capable of supporting gameplay or simulation projects.</li>
+            </ul>
+
+            <p>This engine underlies several demo projects—including a basic platformer and physics sandbox—and serves as a starting point for more complex games. You can explore the architecture, engine tools, and example scenes on <a href="https://github.com/ItsTanPI/Pi-Engine" target="_blank">GitHub</a>.</p>
         </div>
     </div>
     
     <div id="node-sysraasm" class="node">
-        <div class="node-name">Sysra.asm</div>
+        <div class="node-name">SYSRA.asm</div>
         <div class="node-content">
-            <p>A retro-style platformer engine built entirely in 8086 Assembly, SYSRA runs on DOS and emulates a full game loop with custom sprite rendering, tilemaps, physics, animation, and input — all without relying on high-level libraries. Designed for precision and hardware-level control, SYSRA demonstrates what’s possible with pure assembly and a passion for pushing limits.</p>
+          <p><strong><a href="https://github.com/ItsTanPI/SYSRA.asm" target="_blank">SYSRA.asm</a></strong> is an 8086 Assembly-language platformer prototype I developed to explore low-level game development on DOS. It demonstrates custom sprite rendering, collision detection, and direct screen-buffer management—all handcrafted without any external libraries.</p>
+      
+          <p><strong>Tech:</strong>
+            <ul>
+              <li>NASM / 8086 real-mode Assembly – full control over CPU instructions.</li>
+              <li>BIOS & DOS interrupts – setting video mode (0x13h), keyboard input, timing.</li>
+              <li>Direct video memory writes – drawing sprites and tiles in real-time.</li>
+              <li>Fixed-point arithmetic – subpixel movement and smooth collision handling.</li>
+              <li>Double buffering in segment:offset schema – to reduce flickering.</li>
+              <li>Custom tile & sprite system – collision map integrated into binary formats.</li>
+            </ul>
+          </p>
+      
+          <p><strong>What I Did</strong></p>
+          <p>I built this from scratch to understand how classic DOS games managed graphics and input. I implemented:</p>
+          <ul>
+            <li>Real-mode memory segmentation and segment:offset pointers for tile maps.</li>
+            <li>An update-render loop that manually toggles between backbuffer and frontbuffer.</li>
+            <li>A fixed-point system (8.8 format) for smooth horizontal and vertical movement.</li>
+            <li>Collision detection by checking sprite footprint against a binary collision mask.</li>
+            <li>Keyboard polling via BIOS INT 16h to get immediate player input.</li>
+            <li>Optimizations like unrolling inner loops and using REGISTER-level sprite blit routines.</li>
+          </ul>
+      
+          <p>Through this project, I gained deep insights into:</p>
+          <ul>
+            <li>CPU pipeline and instruction latency on 8086.</li>
+            <li>Memory layout constraints in limited segment offsets.</li>
+            <li>Manual collision system design at the byte-level.</li>
+            <li>Graphics mode 0x13h (320×200, 256‑color) rendering challenges.</li>
+          </ul>
+      
+          <p>Though not a full game yet, it forms the foundation for a retro-style platformer engine. I intend to extend it with sound support (via PC speaker), level loading from data files, and rudimentary physics.</p>
+      
+          <p>Check out the full source and demos on <a href="https://github.com/ItsTanPI/SYSRA.asm" target="_blank">GitHub</a></p>
         </div>
     </div>
-    
+      
     <div id="node-ai-racing-sim" class="node">
-        <div class="node-name">AI-Racing-Sim</div>
+        <div class="node-name">AI‑Racing‑Sim</div>
+        <video-data>
+            <video-url>Video/AIRacing.mp4</video-url>
+            <common-color>#ffffcc</common-color>
+        </video-data>
         <div class="node-content">
-            <p>This project is built using Python, Pygame, and Gymnasium. It features a car racing game with AI-controlled cars navigating through randomly generated race tracks. The AI cars are currently under development and will be capable of driving autonomously once trained.</p>
+          <p><strong><a href="https://github.com/ItsTanPI/AI-Racing-Sim" target="_blank">AI‑Racing‑Sim</a></strong> is a 2D car racing simulator built in Python that uses reinforcement learning (PPO) to train autonomous agents for optimal racing behavior. The project includes a custom simulation environment, RL training pipeline, telemetry logging, and real-time policy rollout visualization.</p>
+      
+          <p><strong>Tech:</strong>
+            <ul>
+              <li>Python 3.x – core simulation and training logic.</li>
+              <li>Gym-style custom environment – state-reset, step(), render() abstractions.</li>
+              <li>PPO (Proximal Policy Optimization) via Stable Baselines3 – actor‑critic RL algorithm.</li>
+              <li>NumPy – physics and vector math for 2D dynamics computations.</li>
+              <li>Matplotlib or Pygame – telemetry plotting or real-time render loops.</li>
+              <li>Checkpointing & tensorboard integration – tracking training metrics, loss curves, reward progression.</li>
+            </ul>
+          </p>
+      
+          <p><strong>What I Did</strong></p>
+          <ul>
+            <li>Designed and programmed a 2D top-down track simulator including: vehicle kinematics (steer, throttle, brake), collision handling, and lap detection.</li>
+            <li>Defined observation space (e.g., heading, speed, distance-to-track-edge) and continuous action space (steering angle, acceleration).</li>
+            <li>Integrated Gym-compatible interface, enabling PPO training using Stable Baselines3.</li>
+            <li>Tuned PPO hyperparameters — batch size, learning rate, clipping epsilon — to stabilize training and avoid policy collapse.</li>
+            <li>Visualized agent performance with real-time render and saved telemetry plots (reward vs. timestep, lap time histograms).</li>
+          </ul>
+      
+          <p><strong>What I Learned</strong></p>
+          <ul>
+            <li>Fundamentals of RL training — policy gradient stability, reward shaping, handling exploration vs. exploitation.</li>
+            <li>2D physics modeling — translating wheel thrust and friction constraints into acceleration & steering dynamics.</li>
+            <li>Gym environment mechanics — ensuring correct episode termination, state normalization, and reproducibility.</li>
+            <li>Debug strategies for RL — diagnosing divergence, hyperparameter sweep impact, and reward signal clarity.</li>
+            <li>Visualization pipelines — integrating training logs, tensorboard metrics, and simulation playback.</li>
+          </ul>
+      
+          <p>This prototype serves as a foundation for more advanced work, such as:</p>
+          <ul>
+            <li>Extending to 3D physics or integrating with a real-time simulator like Gym‑Duckietown or ROS-based frameworks.</li>
+            <li>Adding multi-agent racing scenarios or curriculum learning for complex track layout generalization.</li>
+            <li>Transitioning to perception-based agents using raw pixel inputs and convolutional policies.</li>
+          </ul>
+      
+          <p>Explore the full source code, training scripts, and demo session on <a href="https://github.com/ItsTanPI/AI-Racing-Sim" target="_blank">GitHub</a>.</p>
         </div>
     </div>
     
     <div id="node-2durp-godrays" class="node">
-        <div class="node-name">2DURP-GodRays</div>
-        <image-data>
-            <image-url>textures/Godrays.png</image-url>
-            <common-color>#FFFFFF</common-color>
-        </image-data>
+        <div class="node-name">2DURP‑GodRays</div>
+        <video-data>
+            <video-url>Video/2DURP.mp4</video-url>
+            <common-color>#ffffcc</common-color>
+        </video-data>
         <div class="node-content">
-            <p>2DURP GodRays is a post-processing shader designed to add a God Rays effect, particularly in 2D scenes. This effect simulates light scattering through a medium, creating visually striking rays of light that enhance the atmosphere of your game.</p>
+            <p><strong><a href="https://github.com/ItsTanPI/2DURP-GodRays" target="_blank">2DURP‑GodRays</a></strong> is a post-processing shader crafted for Unity’s URP that generates dynamic, high‑quality god ray (crepuscular rays) effects in 2D scenes. It supports customizable settings like density, decay, exposure, and blur, enabling both aesthetic and optimized performance integration. A demo is available on <a href="https://tan-pi.itch.io/2durp-godrays" target="_blank">itch.io</a>.</p>
+
+            <p><strong>Tech:</strong>
+            <ul>
+                <li>Unity Universal Render Pipeline (URP) – for lightweight scriptable rendering.</li>
+                <li>HLSL-based custom full-screen post-processing shader.</li>
+                <li>Render Features & Render Pass – injecting god‑ray pass after depth/opaque.</li>
+                <li>Depth-based radial blur – sample along vector from light source, combine decay.</li>
+                <li>Shader properties: <code>Density</code>, <code>Decay</code>, <code>Exposure</code>, <code>Samples</code>, <code>BlurRadius</code>.</li>
+                <li>Support for both 2D Sprite & 2D Lights pipelines via URP layering.</li>
+                <li>Efficient performance modes: adjustable sample count and resolution via downsampling.</li>
+            </ul>
+            </p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+            <li>Architected a URP <code>ScriptableRendererFeature</code> and <code>ScriptableRenderPass</code> for light scattering.</li>
+            <li>Worked with RTHandles and temporary render textures to isolate and blur light source masks.</li>
+            <li>Developed radial blur kernel in HLSL with decay control and multi-iteration sampling.</li>
+            <li>Exposed shader tuning parameters, enabling artists/devs to tweak visuals at runtime.</li>
+            <li>Handled performance via dynamic sample count scaling and viewport downscaling.</li>
+            <li>Created demonstration scene (sprites, parallax background) with UI toggles and keybindings: U, A/D/Arrows, Space, LMB/RMB, F :contentReference[oaicite:3]{index=3}.</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+            <li>Deep understanding of URP’s render lifecycle and passes.</li>
+            <li>Techniques for efficient radial blur and light-scattering shader design.</li>
+            <li>Memory management using RTHandles and transient RenderTextures.</li>
+            <li>Balancing visual quality and performance through sampling strategies.</li>
+            <li>Shader‑centered UI configuration for rapid iteration and testing.</li>
+            </ul>
+
+            <p>This shader pack is a foundation for visual polish in 2D URP games. Future improvements include:</p>
+            <ul>
+            <li>Dynamic light occlusion via depth masks or stencil overlays.</li>
+            <li>Auto light positioning from scene light sources (e.g., 2D Light and Shadow Caster).</li>
+            <li>Integration with volumetric particle overlays for atmosphere enhancement.</li>
+            <li>Support for HDR and bloom integration via post-processing stack.</li>
+            </ul>
+
+            <p>Try the demo or grab the source on <a href="https://tan-pi.itch.io/2durp-godrays" target="_blank">itch.io</a> or GitHub!</p>
         </div>
     </div>
     
     <div id="node-physics-engine" class="node">
-        <div class="node-name">Physics-Engine</div>
+        <div class="node-name">Physics‑Engine</div>
+        <video-data>
+            <video-url>Video/PhysicsEngine.mp4</video-url>
+            <common-color>#ffffcc</common-color>
+        </video-data>
         <div class="node-content">
-            <p>A Physics Engine developed using C++ and OpenGL, designed to simulate basic physics. This engine allows users to apply fundamental physics principles, making it suitable for creating simple physics-based games like Flappy Bird.</p>
+            <p><strong><a href="https://github.com/ItsTanPI/Physics-Engine" target="_blank">Physics‑Engine</a></strong> is a custom 2D physics simulation framework written in C++ with OpenGL rendering. It demonstrates core physics techniques like Verlet integration, constraint-based springs and distance joints, and simple collision detection/rendering—all built from the ground up.</p>
+
+            <p><strong>Tech:</strong>
+            <ul>
+                <li>C++11 – core architecture and physics logic.</li>
+                <li>GLFW + GLEW – cross-platform OpenGL context creation and function loading.</li>
+                <li>OpenGL – real-time rendering using point and line primitives for particles and joints.</li>
+                <li>Verlet Integration – stable time-stepping for particle position updates.</li>
+                <li>Constraint Solvers – spring/distance constraints implemented via positional corrections.</li>
+                <li>Basic collision detection – AABB/circle or point collision responses.</li>
+                <li>User input – interactive control via keyboard (Space for jump, Up arrow to move).</li>
+                <li>FPS locking and loop timing – fixed at 144 Hz for deterministic updates.</li>
+            </ul>
+            </p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+            <li>Implemented a particle-based physics system using Verlet integration to simulate stable motion.</li>
+            <li>Built constraint structures: springs and fixed-distance joints connecting particles.</li>
+            <li>Developed simple collision detection and response to prevent particles/joints from passing through static obstacles.</li>
+            <li>Rendered simulation elements (particles and joints) using OpenGL’s line and point drawings.</li>
+            <li>Integrated real-time input handling: players can apply impulses (e.g. jump) via Space and steer using arrow keys.</li>
+            <li>Ensured smooth physics with 144 Hz loop, locking FPS for consistent behavior across runs.</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+            <li>Low-level physics integration methods and their stability at high update rates.</li>
+            <li>Constraint resolution techniques using positional corrections instead of force solvers.</li>
+            <li>Real-time rendering with OpenGL primitives and handling graphics context with GLFW/GLEW.</li>
+            <li>Loop timing and deterministic simulation by decoupling physics updates from frame rendering.</li>
+            <li>Interactive input mapping to physics actions for user-controlled simulation scenarios.</li>
+            </ul>
+
+            <p>This project is a foundation for advanced physics-based systems. Future extensions could include:</p>
+            <ul>
+            <li>Rigid-body dynamics with orientation/quaternion handling.</li>
+            <li>More advanced collision detection (SAT, GJK) and continuous collision response.</li>
+            <li>Soft-body structures like cloth or mesh deformation.</li>
+            <li>Adding textures, shaders for visualization, and performance profiling tools.</li>
+            </ul>
+
+            <p>See the full demo (video linked in README) and source code on <a href="https://github.com/ItsTanPI/Physics-Engine" target="_blank">GitHub</a>.</p>
         </div>
     </div>
     
     <div id="node-vending-machine-simulation" class="node">
-        <div class="node-name">Vending Machine Simulation</div>
+        <div class="node-name">Vending‑machine</div>
         <div class="node-content">
-            <p>A comprehensive full-stack web application simulating a vending machine system. This project covers user interaction, wallet management, sales history, and admin functionalities.</p>
+          <p><strong><a href="https://github.com/ItsTanPI/Vending-machine" target="_blank">Vending‑machine</a></strong> is a full‑stack simulation of an automated vending machine, built using web technologies. It features a client-side GUI, RESTful backend, user authentication, product inventory, virtual currency handling, and interactive machine operation—all without physical hardware.</p>
+      
+          <p><strong>Tech:</strong>
+            <ul>
+              <li>JavaScript (Node.js + Express) – server REST API for product/inventory and transactions.</li>
+              <li>HTML/CSS + vanilla JS – frontend UI simulating the vending machine interface.</li>
+              <li>SQLite or JSON for persistent inventory storage on the backend.</li>
+              <li>JWT / session handling – managing user login and virtual wallet for purchases.</li>
+              <li>Client‑side rendering – real-time updates for balance, stock, and purchase buttons.</li>
+              <li>Modular architecture – clear separation between UI, API, and storage layers.</li>
+            </ul>
+          </p>
+      
+          <p><strong>What I Did</strong></p>
+          <ul>
+            <li>Designed & implemented REST endpoints: listing products, inserting coins, selecting items, dispensing (simulated), and reset.</li>
+            <li>Constructed client UI with dynamic rendering of product cards, stock states, and user balance.</li>
+            <li>Managed transaction logic: coin validation, change calculation, and error messaging.</li>
+            <li>Built authentication flow to track individual user sessions and purchases.</li>
+            <li>Persisted inventory changes so product levels reflect across sessions.</li>
+            <li>Added admin actions: refill products and reset machine state.</li>
+          </ul>
+      
+          <p><strong>What I Learned</strong></p>
+          <ul>
+            <li>How to structure a RESTful server with transactional endpoints.</li>
+            <li>Frontend–backend integration techniques using fetch/AJAX and JSON.</li>
+            <li>Design of user session handling and persistent state for inventory.</li>
+            <li>UI state management for user feedback: disabled buttons, status messages, real-time balance.</li>
+            <li>Basic algorithm for change-making and coin management.</li>
+          </ul>
+      
+          <p>Explore the full source with demos on <a href="https://github.com/ItsTanPI/Vending-machine" target="_blank">GitHub</a>.</p>
         </div>
     </div>
     
     <div id="node-wiki-interactive" class="node">
-        <div class="node-name">Wiki-Interactive</div>
+        <div class="node-name">Vending Machine Simulation</div>
         <div class="node-content">
-            <p>Wiki-Interactive is a dynamic and engaging webpage designed to educate and entertain users about our solar system. The site features a playful, cartoon-style design aimed at children and those young at heart. The project utilizes core web technologies, including HTML, CSS, and JavaScript, along with the Matter.js library for physics simulation and rendering.</p>
+            <p><strong><a href="https://github.com/ItsTanPI/Vending-machine" target="_blank">Vending Machine Simulation</a></strong> is a full-stack web application that simulates a smart vending machine experience. It features user-facing interactions via mobile, secure wallet and PIN systems, and an admin dashboard for managing inventory, sales, and pricing.</p>
+
+            <p><strong>Tech:</strong>
+            <ul>
+                <li><strong>Frontend:</strong> HTML, CSS, JavaScript, jQuery, Chart.js, Matter.js, Bootstrap</li>
+                <li><strong>Backend:</strong> PHP, MySQL, PHP QR Code Library</li>
+                <li><strong>APIs:</strong> Twilio (for OTP-based PIN recovery)</li>
+                <li><strong>Communication:</strong> AJAX (for real-time updates between machine and phone)</li>
+            </ul>
+            </p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+            <li>Built a mobile-first user interface for signing in, managing wallet balance, and buying products using QR codes.</li>
+            <li>Implemented a secure wallet system where users authenticate via phone number and PIN, with OTP recovery support via Twilio.</li>
+            <li>Created the backend logic in PHP for managing user accounts, transaction records, and PIN resets.</li>
+            <li>Designed and developed an admin dashboard to visualize sales data (using Chart.js), restock items, and update product prices.</li>
+            <li>Integrated QR code generation using the PHP QR Code library for each vending machine instance.</li>
+            </ul>
+
+            <p><strong>Features</strong></p>
+            <ul>
+            <li><strong>User Experience:</strong> QR login, wallet recharge, product selection, and transaction history.</li>
+            <li><strong>Security:</strong> 4-digit PIN login with OTP-based reset via SMS.</li>
+            <li><strong>Admin Tools:</strong> Sales filtering by branch/date/product, bar graph analytics, product restocking, and live inventory control.</li>
+            <li><strong>Responsive Design:</strong> Optimized for both mobile and desktop access via Bootstrap and AJAX-powered updates.</li>
+            </ul>
+
+            <p>Assets courtesy of <strong>Freepik</strong>. Built to simulate how modern vending machines can integrate mobile-first UX with real-time inventory and secure digital payments.</p>
+
+            <p>Explore the code and try the simulation on <a href="https://github.com/ItsTanPI/Vending-machine" target="_blank">GitHub</a>.</p>
         </div>
     </div>
-    
 
     <!-- Socials node -->
     <div id="node-socials" class="node">
@@ -517,6 +808,17 @@
     </div>
 
     <div id="node-twitter" class="node">
+        <div class="node-name">Twitter</div>
+        <image-data>
+            <image-url>textures/twitter.png</image-url>
+            <common-color>#cccccc</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><a href="https://twitter.com/ItsTanPI" target="_blank" rel="noopener noreferrer">@ItsTanPI</a></p>
+        </div>
+    </div>
+
+    <div id="node-linkedin" class="node">
         <div class="node-name">Twitter</div>
         <image-data>
             <image-url>textures/twitter.png</image-url>

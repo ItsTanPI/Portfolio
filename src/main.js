@@ -30,12 +30,14 @@ renderer.shadowMap.enabled = false;
 const scene = new THREE.Scene();
 
 var dosCanvas;
+let canvasPromise = Promise.resolve();
 
 if (!isMobile) 
 {
     Dos(document.getElementById("dos"), {url:"Game/SYSRA.zip", autoStart: true});
-}
 
+    canvasPromise = waitForCanvas(); 
+}
 
 function waitForCanvas() 
 {
@@ -49,7 +51,6 @@ function waitForCanvas()
             
         }
         clearInterval(checkInterval); 
-        animate();
     }, 100);
 }
 
@@ -65,6 +66,9 @@ Promise.all([
         progressBar.style.setProperty('--p', 100);
         document.body.querySelector('.loading-screen').remove();
         waitForCanvas();
+        animate();
+        
+        
     })
     .catch((error) => console.error('Error loading models:', error));
 
