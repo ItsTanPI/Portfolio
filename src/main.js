@@ -32,12 +32,14 @@ const scene = new THREE.Scene();
 var dosCanvas;
 let canvasPromise = Promise.resolve();
 
-if (!isMobile) 
+if (true) // !isMobile) 
 {
     Dos(document.getElementById("dos"), {url:"Game/SYSRA.zip", autoStart: true});
 
     canvasPromise = waitForCanvas(); 
 }
+
+
 
 function waitForCanvas() 
 {

@@ -55,7 +55,53 @@
     <link rel="icon" type="image/png" href="textures/Profile.png">
 
     <title>Portfolio</title>
+
+    <script>
+    function dispatchKey(type, key, code, keyCode) {
+        const event = new KeyboardEvent(type, {
+            key: key,
+            code: code,
+            keyCode: keyCode,
+            which: keyCode,
+            bubbles: true
+        });
+        document.dispatchEvent(event);
+    }
+
+    function holdKey(key, code, keyCode, element) {
+        element.addEventListener("mousedown", () => {
+            dispatchKey("keydown", key, code, keyCode);
+        });
+
+        element.addEventListener("mouseup", () => {
+            dispatchKey("keyup", key, code, keyCode);
+        });
+
+        // Also handle mouse leaving the button while held
+        element.addEventListener("mouseleave", () => {
+            dispatchKey("keyup", key, code, keyCode);
+        });
+
+        // Optional: for touch devices
+        element.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            dispatchKey("keydown", key, code, keyCode);
+        }, { passive: false });
+
+        element.addEventListener("touchend", () => {
+            dispatchKey("keyup", key, code, keyCode);
+        });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        holdKey("ArrowUp", "ArrowUp", 38, document.querySelector(".arrow.up"));
+        holdKey("ArrowRight", "ArrowRight", 39, document.querySelector(".arrow.right"));
+        holdKey("ArrowLeft", "ArrowLeft", 37, document.querySelector(".arrow.left"));
+    });
+</script>
+
 </head>
+
 <body>
 
     <p id = "FPS"></p>
@@ -88,10 +134,7 @@
         <div id="Title"></div>
         <div id="Content"></div>
         
-        <!-- <div id="controls">
-            <div class="arrow up" onclick="simulateKey('ArrowUp')"></div>
-            <div class="arrow right" onclick="simulateKey('ArrowRight')"></div>
-        </div> -->
+
     </div>
     
     <div id = 'Intro' data-isActive="true" data-text="Tanpi">TanPi</div>
@@ -105,6 +148,13 @@
             <p>Play orginal on <a href="https://tan-pi.itch.io/sysra" target="_blank" style="color:red;">itch.io</a></p>
 
         </div>
+
+        <div id="controls">
+            <div class="arrow up"></div>
+            <div class="arrow right"></div>
+            <div class="arrow left"></div>
+        </div>
+
     </div>
 
     <!-- Node Definitions -->

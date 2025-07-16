@@ -437,7 +437,8 @@ video-data
 
     #controls
     {
-
+        position: absolute;
+        top: 48%;
         width: 100%;
     }
 
@@ -452,6 +453,7 @@ video-data
     .arrow.up
     {
         position :absolute;
+        left: 75%;
         border-left: 2rem solid transparent;
         border-right: 2rem solid transparent;
         border-bottom: 3rem solid white;
@@ -459,7 +461,9 @@ video-data
 
     .arrow.left
     {
+
         position :absolute;
+        left: 7%;
         border-top: 2rem solid transparent;
         border-bottom: 2rem solid transparent;
         border-right: 3rem solid white;
@@ -468,6 +472,8 @@ video-data
     .arrow.right
     {
         position :absolute;
+        left: 27%;
+
         border-top: 2rem solid transparent;
         border-bottom: 2rem solid transparent;
         border-left: 3rem solid white;
