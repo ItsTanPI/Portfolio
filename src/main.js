@@ -39,6 +39,11 @@ if (true) // !isMobile)
     canvasPromise = waitForCanvas(); 
 }
 
+if(!isMobile)
+{
+
+}
+
 
 
 function waitForCanvas() 
@@ -719,4 +724,15 @@ function animate()
 window.addEventListener("DOMContentLoaded", () =>
 {
     handleResize();
+
+    const controls = document.getElementById("controls");
+
+    if (isMobile) 
+    {
+        controls.style.display = "block";
+    } 
+    else 
+    {
+        controls.style.display = "none";
+    }
 });
