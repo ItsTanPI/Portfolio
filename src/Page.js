@@ -105,7 +105,8 @@ setInterval(() =>
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 if (isMobile)
 {
-    document.getElementById("tellControls").innerHTML = "use Arrow keys to control Sysra"// "Cannot be Played on Mobile"
+    document.getElementById("tellControls").innerHTML = ""// "Cannot be Played on Mobile"
+    document.getElementById("SysraNote")
 }
 else
 {

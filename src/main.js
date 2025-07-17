@@ -191,7 +191,7 @@ async function loadModelWithShader(path, position, rotation, useShader) {
                                     metallic = ((metallic > 0.2) ? 1.0 : metallic * 1.5);
                                     color *= (1.0 - (roughness * 1.2));
                                     color *= metallic;
-                                    color *= (Flicker > 0.5) ? Flicker : 1.0;
+                                    color *= (Flicker > 0.75) ? Flicker : 1.0;
 
                                     gl_FragColor = vec4(color, 1.0);
                                 }
@@ -706,9 +706,8 @@ function animate()
         }
         else
         {
-            
             tempx = cameraData.position.x;
-            tempfov = 45;
+            tempfov = 35;
         }
 
         lerpCamera(camera, new THREE.Vector3(tempx, baseY, baseZ), new THREE.Euler(0, THREE.MathUtils.degToRad(22), 0), tempfov, deltaTime);

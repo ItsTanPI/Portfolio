@@ -301,7 +301,7 @@ a
     {
         font-size: 1rem;
         left: 50%;
-        top: 55%;
+        top: 60%;
     }
 }
 
@@ -438,7 +438,7 @@ video-data
     #controls
     {
         position: absolute;
-        top: 48%;
+        top: 50%;
         width: 100%;
     }
 
