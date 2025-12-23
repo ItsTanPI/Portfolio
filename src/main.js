@@ -48,31 +48,42 @@ if(!isMobile)
 
 function waitForCanvas() 
 {
-    let checkInterval = setInterval(() => 
-    {
-        let canvas = document.getElementById("dos").querySelector("canvas"); 
-        if (canvas) 
+    return new Promise((resolve, reject) => {
+        let attempts = 0;
+        const maxAttempts = 100; // 10 seconds max wait time
+        
+        let checkInterval = setInterval(() => 
         {
-            document.getElementById("dos").classList.add('hidediv');
-            dosCanvas = canvas
-            
-        }
-        clearInterval(checkInterval); 
-    }, 100);
+            attempts++;
+            let canvas = document.getElementById("dos")?.querySelector("canvas"); 
+            if (canvas) 
+            {
+                document.getElementById("dos").classList.add('hidediv');
+                dosCanvas = canvas;
+                clearInterval(checkInterval);
+                resolve(canvas);
+            }
+            else if (attempts >= maxAttempts)
+            {
+                clearInterval(checkInterval);
+                console.warn("DOS canvas not found after 10 seconds");
+                reject(new Error("Canvas timeout"));
+            }
+        }, 100);
+    });
 }
 
 
 Promise.all([
     loadScene('models/Scene-400KB.glb'),
-    loadModelWithShader('models/Screen-30KB.glb', [-1.23, 1.03, 0.54], [0, -68, 0], true) ]
-    )
+    loadModelWithShader('models/Screen-30KB.glb', [-1.23, 1.03, 0.54], [0, -68, 0], true)
+    ])
     .then(([finalModel, screenModel]) => {
         scene.add(finalModel);
         scene.add(screenModel);
 
         progressBar.style.setProperty('--p', 100);
         document.body.querySelector('.loading-screen').remove();
-        waitForCanvas();
         animate();
         
         
@@ -655,7 +666,7 @@ function completeTransition(url)
 
 const clock = new THREE.Clock();    
 function animate() 
-{
+{    
     requestAnimationFrame(animate);
     if (isMobile) 
     {
