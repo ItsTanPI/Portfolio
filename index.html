@@ -96,7 +96,7 @@
     });
 </script>
 
-  <script type="module" crossorigin src="/Portfolio/assets/index-BJnZ74-I.js"></script>
+  <script type="module" crossorigin src="/Portfolio/assets/index-Sx9ixi1w.js"></script>
   <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-Dm-oVzdR.css">
 </head>
 
@@ -166,14 +166,16 @@
             <div class="child-link" data-target="node-projects">Projects</div>
             <div class="child-link" data-target="node-credits">Credits</div>
             <div class="child-link" data-target="node-socials">Socials</div>
+            <div class="child-link" data-target="node-vhs">VHS</div>
+
         </div>
     </div>
     
     <video id="video" style="display: none; position: absolute;"  
     playsinline
     loop
+    crossorigin="anonymous"
     preload="metadata"
-    muted
     ></video>
 
     <!-- Play -->
@@ -908,6 +910,50 @@
             <p><a href="https://discord.gg/67RBFr6HpG" target="_blank" rel="noopener noreferrer">@itstanPI</a></p>
         </div>
     </div>
+
+    <!-- VHS node -->
+    <div id="node-vhs" class="node">
+        <div class="node-name">VHS</div>
+        <image-data>
+            <image-url>textures/TANPI.png</image-url>
+            <common-color>#FFFFFF</common-color>
+        </image-data>
+        <div class="node-content">
+            <div class="child-link" data-target="vhs-node-badapple">Bad Apple</div>
+            <div class="child-link" data-target="vhs-node-rr">Dont!</div>
+            </div>
+    </div>
+
+    <div id="vhs-node-badapple" class="node">
+        <div class="node-name">Bad Apple</div>
+        <video-data>
+            <video-url>Video/bad-apple.mp4</video-url>
+            <common-color>#ffffcc</common-color>
+        </video-data>
+    </div>
+
+    <div id="vhs-node-rr" class="node">
+        <div class="node-name">I warned you</div>
+        <video-data>
+            <video-url>Video/RR.mp4</video-url>
+            <common-color>#ffffcc</common-color>
+        </video-data>
+    </div>
+
+    <div id="vhs-node-custom" class="node">
+        <div class="node-name">Custom</div>
+        <video-data>
+            <video-url></video-url>
+            <common-color>#ffffcc</common-color>
+        </video-data>
+        <div class="node-content">
+            <p>Enter a video URL to play:</p>
+            <input type="text" id="custom-video-url" placeholder="Video/YourVideo.mp4" style="width: 100%; padding: 8px; margin: 10px 0; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 4px; pointer-events: auto; z-index: 999;">
+            <button id="play-custom-video" style="padding: 8px 16px; background: #ff1b1b; color: white; border: none; border-radius: 4px; cursor: pointer; pointer-events: auto; z-index: 999; position: relative;">Play Video</button>
+            <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Note: External URLs must support CORS. Use local paths like Video/filename.mp4 for best results.</p>
+        </div>
+    </div>
+
 
 </body>
 </html>
