@@ -523,3 +523,54 @@ document.getElementById("Backbutton").addEventListener("click", () =>
         popLastHash();
     }
 });
+
+// Handle custom video URL input
+function handleCustomVideoPlay() {
+    const input = document.getElementById('custom-video-url');
+    const url = input?.value.trim();
+    
+    if (url) {
+        // Update the hidden video-data element
+        const customNode = document.getElementById('vhs-node-custom');
+        const videoData = customNode?.querySelector('video-data');
+        const videoUrlElement = videoData?.querySelector('video-url');
+        
+        if (videoUrlElement) {
+            videoUrlElement.textContent = url;
+            console.log('Video URL set to:', url);
+            
+            // Find the cloned video-data in PageContainer and update it
+            const pageVideoData = document.querySelector('#PageContainer video-data');
+            const pageVideoUrl = pageVideoData?.querySelector('video-url');
+            
+            if (pageVideoUrl) {
+                pageVideoUrl.textContent = url;
+                // Trigger a manual update by dispatching an event or forcing a re-render
+                window.location.hash = window.location.hash; // Force refresh
+            }
+        }
+    } else {
+        alert('Please enter a valid video URL');
+    }
+}
+
+// Use event delegation for dynamically created button
+document.addEventListener('click', (e) => {
+    if (e.target && e.target.id === 'play-custom-video') {
+        e.preventDefault();
+        e.stopPropagation();
+        handleCustomVideoPlay();
+    }
+});
+
+// Also try direct listener when element exists
+setTimeout(() => {
+    const btn = document.getElementById('play-custom-video');
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleCustomVideoPlay();
+        });
+    }
+}, 1000);
