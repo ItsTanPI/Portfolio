@@ -5,10 +5,12 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 
 window.sharedData = {
     isGameOpen: false,
+    isVHSPlaying: false,
     imageHover: null
 };
 window.sharedData.imageHover = null;
 window.sharedData.isGameOpen = false;
+window.sharedData.isVHSPlaying = false;
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
 
@@ -707,7 +709,7 @@ function animate()
         }
     }); 
 
-    if (window.sharedData.isGameOpen)
+    if (window.sharedData.isGameOpen || window.sharedData.isVHSPlaying)
     {
         var tempfov, tempx;
         if(window.innerWidth > 768)

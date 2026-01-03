@@ -245,6 +245,24 @@ a
     padding: 2% 0 2% 0;
     left: 50%;
 }
+
+#Customvideo 
+{
+    position: absolute;
+    font-family: 'TypeLight';
+    color: white;
+    font-size: 2rem;
+    transition: color 0.3s ease;
+    text-align: center;
+    transform: translate(-50%);
+    width: 40%;
+    height: 100%;
+
+    padding: 2% 0 2% 0;
+    left: 50%;
+    top: 75%;
+    visibility: hidden;
+}
 #SysraNote
 {
     position: absolute;
@@ -295,6 +313,14 @@ a
         visibility: hidden;
         font-size: 1rem;
         top: 20%;
+    }
+    
+    #Customvideo
+    {
+        visibility: hidden;
+        font-size: 1rem;
+        top: 70%;
+        width: 95%;
     }
 
     #SysraNote

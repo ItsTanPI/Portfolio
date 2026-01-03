@@ -157,6 +157,15 @@
 
     </div>
 
+    <div id="Customvideo">
+        <p>Enter a video URL to play:</p>
+        <div style="display: flex; gap: 8px; align-items: center; margin: 10px 0;">
+            <input type="text" id="custom-video-url" placeholder="Video/YourVideo.mp4" style="flex: 1; min-width: 0; padding: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 4px; pointer-events: auto; z-index: 999;">
+            <button id="play-custom-video" style="padding: 8px 16px; background: #ff1b1b; color: white; border: none; border-radius: 4px; cursor: pointer; pointer-events: auto; z-index: 999; position: relative; white-space: nowrap;">Play Video</button>
+        </div>
+        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Note: External URLs must support CORS. Use local paths like Video/filename.mp4 for best results.</p>
+    </div>
+
     <!-- Node Definitions -->
     <div id="node-tanpi" class="node">
         <div class="node-name">TanPi</div>
@@ -928,7 +937,7 @@
     </div>
 
     <div id="vhs-node-badapple" class="node">
-        <div class="node-name">Bad Apple</div>
+        <div class="node-name"> </div>
         <video-data>
             <video-url>Video/bad-apple.mp4</video-url>
             <common-color>#ffffcc</common-color>
@@ -936,7 +945,7 @@
     </div>
 
     <div id="vhs-node-rr" class="node">
-        <div class="node-name">I warned you</div>
+        <div class="node-name"> </div>
         <video-data>
             <video-url>Video/RR.mp4</video-url>
             <common-color>#ffffcc</common-color>
@@ -944,16 +953,12 @@
     </div>
 
     <div id="vhs-node-custom" class="node">
-        <div class="node-name">Custom</div>
+        <div class="node-name"> </div>
         <video-data>
             <video-url></video-url>
             <common-color>#ffffcc</common-color>
         </video-data>
         <div class="node-content">
-            <p>Enter a video URL to play:</p>
-            <input type="text" id="custom-video-url" placeholder="Video/YourVideo.mp4" style="width: 100%; padding: 8px; margin: 10px 0; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 4px; pointer-events: auto; z-index: 999;">
-            <button id="play-custom-video" style="padding: 8px 16px; background: #ff1b1b; color: white; border: none; border-radius: 4px; cursor: pointer; pointer-events: auto; z-index: 999; position: relative;">Play Video</button>
-            <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Note: External URLs must support CORS. Use local paths like Video/filename.mp4 for best results.</p>
         </div>
     </div>
 

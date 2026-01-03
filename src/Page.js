@@ -117,9 +117,13 @@ else
 const PageContent = document.getElementById("PageContainer");
 function displayNode(nodeId)
 {
+    // Check if it's a VHS node (handles both 'vhs-node-x' and 'node-vhs-node-x' formats)
+    const isVHSNode = nodeId.includes('vhs-node');
+    
     if(nodeId == "node-play")
     {
         window.sharedData.isGameOpen = true;
+        window.sharedData.isVHSPlaying = false;
         clearDisplayNode();
         const path = getCurrentPathIds();
         if (path[path.length - 1] !== nodeId)
@@ -131,6 +135,8 @@ function displayNode(nodeId)
         updateHashFromIds(path);
         
         document.getElementById("instruction").style.visibility = 'visible'
+        document.getElementById("Customvideo").style.visibility = 'hidden';
+
         const existingImageData = document.querySelector("#PageContainer image-data");
         const existingVidoeData = document.querySelector("#PageContainer video-data");
 
@@ -138,15 +144,32 @@ function displayNode(nodeId)
         if (existingVidoeData) existingVidoeData.remove();
         return;
     }
+    else if (nodeId === 'vhs-node-custom' || nodeId === 'node-vhs-node-custom')
+    {
+        document.getElementById("instruction").style.visibility = 'hidden';
+        document.getElementById("Customvideo").style.visibility = 'visible';
+        window.sharedData.isGameOpen = false;
+        window.sharedData.isVHSPlaying = true;
+    }
+    else if (isVHSNode)
+    {
+        document.getElementById("instruction").style.visibility = 'hidden';
+        document.getElementById("Customvideo").style.visibility = 'hidden';
+        window.sharedData.isGameOpen = false;
+        window.sharedData.isVHSPlaying = true;
+    }
     else
     {
         document.getElementById("instruction").style.visibility = 'hidden';
+        document.getElementById("Customvideo").style.visibility = 'hidden';
 
         window.sharedData.isGameOpen = false;
+        window.sharedData.isVHSPlaying = false;
     }
+    
     const node = document.getElementById(nodeId);
     if (!node) return;
-
+    
     const titleText = node.querySelector(".node-name")?.textContent || "Untitled";
     const content = node.querySelector(".node-content")?.innerHTML || "";
 
@@ -277,6 +300,7 @@ function handleHashChange()
 }
 window.sharedData = {
     isGameOpen: false,
+    isVHSPlaying: false,
     imageHover: null
 };
 
@@ -346,12 +370,23 @@ let animationPlaying = false;
 
 function animate()
 {
+    
     requestAnimationFrame(animate);
 
     const pathIds = getCurrentPathIds();
     const introDiv = document.getElementById("Intro");
     const goTanpiDiv = document.getElementById("GoTanpi");
 
+    // Maintain VHS state based on current node
+    if (pathIds.length > 0) {
+        const currentNodeId = pathIds[pathIds.length - 1];
+        const isCurrentlyVHS = currentNodeId.includes('vhs-node');
+        window.sharedData.isVHSPlaying = isCurrentlyVHS;
+        window.sharedData.isGameOpen = currentNodeId === 'node-play';
+    } else {
+        window.sharedData.isVHSPlaying = false;
+        window.sharedData.isGameOpen = false;
+    }
 
     if (pathIds.length === 0)
     {
