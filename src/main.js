@@ -36,7 +36,7 @@ let canvasPromise = Promise.resolve();
 
 if (true) // !isMobile) 
 {
-    Dos(document.getElementById("dos"), {url:"Game/SYSRA.zip", autoStart: true});
+    Dos(document.getElementById("dos"), {url:"Game/SYSRA.zip", autoStart: true, pathPrefix: "https://cdn.jsdelivr.net/npm/js-dos@8.3.20/dist/emulators/"});
 
     canvasPromise = waitForCanvas(); 
 }
