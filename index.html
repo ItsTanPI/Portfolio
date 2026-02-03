@@ -8,7 +8,7 @@
 
 
 
-    <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-dos@8.3.20/dist/js-dos.js"></script>
 
     <style>
         #dos 
@@ -96,7 +96,7 @@
     });
 </script>
 
-  <script type="module" crossorigin src="/Portfolio/assets/index-CB_c0LSX.js"></script>
+  <script type="module" crossorigin src="/Portfolio/assets/index-BOrnFYHZ.js"></script>
   <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-C5SRgvfK.css">
 </head>
 
@@ -228,6 +228,7 @@
     <div id="node-games" class="node">
         <div class="node-name">Games</div>
         <div class="node-content">
+            <div class="child-link" data-target="node-maskoff">Mask/Off</div>
             <div class="child-link" data-target="node-overclocked">Overclocked</div>
             <div class="child-link" data-target="node-escapevector">Escape Vector</div>
             <div class="child-link" data-target="node-stormsahoy">Storms Ahoy</div>
@@ -237,11 +238,55 @@
         </div>
     </div>
 
+        <div id="node-maskoff" class="node">
+        <div class="node-name">Mask/Off</div>
+        <image-data>
+            <image-url>textures/MaskOff.png</image-url>
+            <common-color>#6a5acd</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><strong><a href="https://quantumcookie.itch.io/maskoff" target="_blank">Mask/Off</a></strong> is a couch co-op puzzle game created during <strong><a href="https://globalgamejam.org/jam-sites/2026/ggj26-coimbatore" target="_blank">Global Game Jam 2026 (Coimbatore)</a></strong>. Built in just <strong>48 hours</strong>, this was my first in-person game jam and one of the most memorable development experiences I’ve had.</p>
+
+            <p>The event was filled with passionate developers, welcoming community members, and industry professionals who were incredibly generous with their knowledge and time.</p>
+
+            <p>Media:</p>
+            <div class="media-container">
+                <img src="https://img.itch.zone/aW1hZ2UvNDI0OTY0OC8yNTM1MjY2Mi5wbmc=/original/8QEWs8.png" alt="Screenshot 1">
+                <img src="https://img.itch.zone/aW1hZ2UvNDI0OTY0OC8yNTM1MjY2My5wbmc=/original/EJ4nxd.png" alt="Screenshot 2">
+                <img src="https://img.itch.zone/aW1hZ2UvNDI0OTY0OC8yNTM1MjY2MS5wbmc=/original/2bSqin.png    " alt="Screenshot 3">
+            </div>
+
+            <p><strong>Tech:</strong></p>
+            <ul>
+                <li>Unity – Game Engine</li>
+                <li>C# – Programming Language</li>
+            </ul>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+                <li>Designed and implemented the <strong>multi-controller input system</strong> for local multiplayer</li>
+                <li>Developed the <strong>player movement system</strong></li>
+                <li>Created the <strong>throwable ability mechanic</strong></li>
+                <li>Designed and implemented <strong>one of the mask abilities</strong></li>
+                <li>Worked on <strong>shader effects</strong> to enhance visual feedback</li>
+            </ul>
+
+            <p>This jam pushed me to collaborate closely under intense time pressure, rapidly prototype gameplay systems, and design mechanics that worked well in a shared-screen multiplayer setting.</p>
+
+            <p>Play the game: <a href="https://quantumcookie.itch.io/maskoff" target="_blank">Game Link</a><br>
+            View the jam team: <a href="https://globalgamejam.org/games/2026/maskoff-4" target="_blank">GGJ Team Page</a></p>
+
+            <p><iframe id = "ItchRef" frameborder="0" src="https://itch.io/embed/4249648?linkback=true&amp;bg_color=010023&amp;fg_color=ffffff&amp;link_color=ff1b1b&amp;border_color=333333" width="552" height="167"><a href="https://quantumcookie.itch.io/maskoff">Mask/Off by QuantumCookie, Loki, TanPi, Sydronee</a></iframe></p>
+
+        </div>
+    </div>
+
+
     <div id="node-overclocked" class="node">
         <div class="node-name">Overclocked</div>
         <image-data>
             <image-url>textures/Overclocked.png</image-url>
-            <common-color>#0000ff</common-color>
+            <common-color>#1BAFBF</common-color>
         </image-data>
         <div class="node-content">
             <p><strong><a href="https://tan-pi.itch.io/overclocked" target="_blank">OverClocked</a></strong> is a fastpaced ThirdPerson Shooter Made for <a href="https://itch.io/jam/boss-rush-jam-2025" target="_blank">Boss Rush Jam 2025 </a>(Jan 2025). </p>
@@ -481,6 +526,7 @@
     <div id="node-projects" class="node">
         <div class="node-name">Projects</div>
         <div class="node-content">
+            <div class="child-link" data-target="node-car-physics">SimCade Car Physics</div>
             <div class="child-link" data-target="node-portfolio">Portfolio</div>
             <div class="child-link" data-target="node-piengine">Pi-Engine</div>
             <div class="child-link" data-target="node-sysraasm">Sysra.asm</div>
@@ -491,6 +537,40 @@
             <div class="child-link" data-target="node-wiki-interactive">Wiki-Interactive</div>
         </div>
     </div>
+
+    <div id="node-car-physics" class="node">
+        <div class="node-name">Sim-Cade Car Physics (Flax Engine)</div>
+        <div class="node-content">
+            <p><strong>Sim-Cade Car Physics</strong> is a private learning project built in <strong>Flax Engine</strong> over a week, focused on understanding vehicle dynamics by implementing core systems from scratch. The project experiments with tyre grip models, suspension response, engine torque, and transmission behavior to create a simplified but responsive car simulation.</p>
+
+            <p><strong>Tech:</strong>
+            <ul>
+                <li><strong>Flax Engine</strong> – core engine for simulation and rendering.</li>
+                <li><strong>C#</strong> – implementing physics logic, input handling, and vehicle control systems.</li>
+                <li><strong>Maths & Physics</strong> – modeling forces, torque, suspension, and tire behavior.</li>
+                <li><strong>Game Programming</strong> – integrating vehicle systems for a playable sim-cade experience.</li>
+            </ul>
+            </p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+                <li>Implemented a sim-cade car physics system handling tyre grip, suspension response, engine torque, and transmission behavior.</li>
+                <li>Built end-to-end vehicle mechanics in Flax Engine over a week for experimentation and tuning.</li>
+                <li>Developed a playable car prototype to test vehicle behavior under different scenarios.</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+                <li>Understanding tire physics, suspension modeling, and torque distribution in a simplified simulation.</li>
+                <li>Integrating physics systems in Flax Engine for rapid prototyping and testing.</li>
+                <li>Balancing realism and playability in sim-cade vehicle mechanics.</li>
+                <li>Applying math and physics principles to game programming problems effectively.</li>
+            </ul>
+
+            <p>This project served as a hands-on experiment to deepen my understanding of vehicle physics, control systems, and simulation in game engines. It’s a private learning exercise with a focus on implementation, tuning, and system-level experimentation.</p>
+        </div>
+    </div>
+
     
     <div id="node-portfolio" class="node">
         <div class="node-name">Portfolio</div>
