@@ -540,6 +540,7 @@
     <div id="node-projects" class="node">
         <div class="node-name">Projects</div>
         <div class="node-content">
+            <div class="child-link" data-target="node-pigl">PiGL.js</div>
             <div class="child-link" data-target="node-car-physics">SimCade Car Physics</div>
             <div class="child-link" data-target="node-portfolio">Portfolio</div>
             <div class="child-link" data-target="node-piengine">Pi-Engine</div>
@@ -549,6 +550,46 @@
             <div class="child-link" data-target="node-physics-engine">Physics-Engine</div>
             <div class="child-link" data-target="node-vending-machine-simulation">Vending Machine</div>
             <div class="child-link" data-target="node-wiki-interactive">Wiki-Interactive</div>
+        </div>
+    </div>
+
+    <div id="node-pigl" class="node">
+        <div class="node-name">PiGL.js</div>
+        <image-data>
+            <image-url>textures/pigl.png</image-url>
+            <common-color>#ff00aa</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><strong><a href="https://github.com/ItsTanPI/PiGL.js" target="_blank">PiGL.js</a></strong> is a custom WebGL rendering engine and editor built from scratch using vanilla JavaScript and GLSL. Designed with a modular architecture, it focuses on multipass rendering, deferred lighting, and sophisticated post-processing effects, providing a lightweight yet powerful environment for 3D graphics experimentation.</p>
+
+            <p><strong>Tech:</strong>
+            <ul>
+                <li><strong>Vanilla JavaScript (ES6+)</strong> – core engine logic, object-oriented architecture, and asynchronous asset loading.</li>
+                <li><strong>WebGL 1.0 / GLSL</strong> – raw graphics implementation using shaders for rendering, lighting, and screen-space effects.</li>
+                <li><strong>Vite</strong> – modern build tooling for efficient development, shader hot-reloading, and production bundling.</li>
+                <li><strong>lil-gui integration</strong> – integrated editor UI for real-time scene inspection, material tweaking, and profiling.</li>
+            </ul>
+            </p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+            <li>Engineered a modular rendering pipeline from scratch, implementing custom passes for Lighting, Outlines, Skyboxes, and Pixel Art effects.</li>
+            <li>Developed a deferred-like rendering workflow using multiple render targets (MRTs) to uncouple lighting calculations from scene complexity.</li>
+            <li>Built an in-browser visual editor featuring a Window Manager, Hierarchy view, and a real-time Inspector for live property manipulation.</li>
+            <li>Implemented a robust math library for 3D transformations, including custom Matrix4, Vector3, and Quaternion-style logic.</li>
+            <li>Created an asset loader for OBJ models and textures, handling placeholders and GPU upload state management.</li>
+            <li>Designed a real-time profiler to monitor FPS, frame times, and per-pass draw call counts for optimization.</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+            <li>Mastering low-level WebGL state management and the intricacies of the graphics pipeline (Vertex/Fragment shaders, Framebuffers).</li>
+            <li>Designing extensible software architectures for graphics engines that allow for easy addition of new visual effects.</li>
+            <li>Implementing complex spatial mathematics for camera systems, projection matrices, and light-space transformations.</li>
+            <li>Optimizing rendering performance through efficient resource reuse and minimizing state changes in the render loop.</li>
+            </ul>
+
+            <p>This engine powers several visual demos—including stylized pixel-art environments and water simulations—demonstrating the flexibility of custom graphics pipelines. You can explore the architecture, source code, and comprehensive documentation on <a href="https://github.com/"></a>
         </div>
     </div>
 
