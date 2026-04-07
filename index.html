@@ -173,6 +173,7 @@
             <div class="child-link" data-target="node-about"> About</div>
             <div class="child-link" data-target="node-games">Games</div>
             <div class="child-link" data-target="node-projects">Projects</div>
+            <div class="child-link" data-target="node-community">Community</div>
             <div class="child-link" data-target="node-credits">Credits</div>
             <div class="child-link" data-target="node-socials">Socials</div>
             <div class="child-link" data-target="node-vhs">VHS</div>
@@ -551,43 +552,42 @@
         </div>
     </div>
 
-    <div id="node-pigl" class="node">
+   <div id="node-pigl" class="node">
         <div class="node-name">PiGL.js</div>
         <image-data>
             <image-url>textures/pigl.png</image-url>
             <common-color>#ff00aa</common-color>
         </image-data>
         <div class="node-content">
-            <p><strong><a href="https://github.com/ItsTanPI/PiGL.js" target="_blank">PiGL.js</a></strong> is a custom WebGL rendering engine and editor built from scratch using vanilla JavaScript and GLSL. Designed with a modular architecture, it focuses on multipass rendering, deferred lighting, and sophisticated post-processing effects, providing a lightweight yet powerful environment for 3D graphics experimentation.</p>
+            <p><strong><a href="https://github.com/ItsTanPI/PiGL.js" target="_blank">PiGL.js</a></strong> is a custom WebGL rendering engine and editor built from scratch — vanilla JS and GLSL, no heavy frameworks. Modular architecture, multipass rendering, deferred lighting, post-processing effects. More of a graphics playground than a game engine, and that's exactly the point.</p>
 
-            <p><strong>Tech:</strong>
+            <p><strong>Tech:</strong></p>
             <ul>
-                <li><strong>Vanilla JavaScript (ES6+)</strong> – core engine logic, object-oriented architecture, and asynchronous asset loading.</li>
-                <li><strong>WebGL 1.0 / GLSL</strong> – raw graphics implementation using shaders for rendering, lighting, and screen-space effects.</li>
-                <li><strong>Vite</strong> – modern build tooling for efficient development, shader hot-reloading, and production bundling.</li>
-                <li><strong>lil-gui integration</strong> – integrated editor UI for real-time scene inspection, material tweaking, and profiling.</li>
+                <li><strong>Vanilla JavaScript (ES6+)</strong> – core engine logic, OOP architecture, async asset loading</li>
+                <li><strong>WebGL 1.0 / GLSL</strong> – raw graphics, lighting, and screen-space effects</li>
+                <li><strong>Vite</strong> – build tooling, shader hot-reloading</li>
+                <li><strong>lil-gui</strong> – in-editor UI for real-time inspection and material tweaking</li>
             </ul>
-            </p>
 
             <p><strong>What I Did</strong></p>
             <ul>
-            <li>Engineered a modular rendering pipeline from scratch, implementing custom passes for Lighting, Outlines, Skyboxes, and Pixel Art effects.</li>
-            <li>Developed a deferred-like rendering workflow using multiple render targets (MRTs) to uncouple lighting calculations from scene complexity.</li>
-            <li>Built an in-browser visual editor featuring a Window Manager, Hierarchy view, and a real-time Inspector for live property manipulation.</li>
-            <li>Implemented a robust math library for 3D transformations, including custom Matrix4, Vector3, and Quaternion-style logic.</li>
-            <li>Created an asset loader for OBJ models and textures, handling placeholders and GPU upload state management.</li>
-            <li>Designed a real-time profiler to monitor FPS, frame times, and per-pass draw call counts for optimization.</li>
+                <li>Engineered a modular rendering pipeline from scratch — Lighting, Outlines, Skybox, Pixel Art passes</li>
+                <li>Built a deferred-like workflow using MRTs to decouple lighting from scene complexity</li>
+                <li>Created an in-browser editor: Window Manager, Hierarchy view, real-time Inspector</li>
+                <li>Implemented a full math library — custom Matrix4, Vector3, Quaternion-style logic</li>
+                <li>Built an OBJ + texture asset loader with placeholder and GPU upload state management</li>
+                <li>Designed a real-time profiler for FPS, frame times, and per-pass draw call counts</li>
             </ul>
 
             <p><strong>What I Learned</strong></p>
             <ul>
-            <li>Mastering low-level WebGL state management and the intricacies of the graphics pipeline (Vertex/Fragment shaders, Framebuffers).</li>
-            <li>Designing extensible software architectures for graphics engines that allow for easy addition of new visual effects.</li>
-            <li>Implementing complex spatial mathematics for camera systems, projection matrices, and light-space transformations.</li>
-            <li>Optimizing rendering performance through efficient resource reuse and minimizing state changes in the render loop.</li>
+                <li>Low-level WebGL state management — framebuffers, vertex/fragment shaders, the whole pipeline</li>
+                <li>Designing extensible engine architecture where adding a new visual pass doesn't break everything else</li>
+                <li>Spatial math for camera systems, projection matrices, and light-space transforms</li>
+                <li>Optimizing render loops through resource reuse and minimizing state changes</li>
             </ul>
 
-            <p>This engine powers several visual demos—including stylized pixel-art environments and water simulations—demonstrating the flexibility of custom graphics pipelines. You can explore the architecture, source code, and comprehensive documentation on <a href="https://github.com/"></a>
+            <p>Powers stylized pixel-art environments and water simulations. Source and docs on <a href="https://github.com/ItsTanPI/PiGL.js" target="_blank">GitHub</a>.</p>
         </div>
     </div>
 
@@ -598,150 +598,138 @@
             <common-color>#ffffcc</common-color>
         </video-data>
         <div class="node-content">
-            <p><strong>Sim-Cade Car Physics</strong> is a private learning project built in <strong>Flax Engine</strong> over a week, focused on understanding vehicle dynamics by implementing core systems from scratch. The project experiments with tyre grip models, suspension response, engine torque, and transmission behavior to create a simplified but responsive car simulation.</p>
+            <p><strong>Sim-Cade Car Physics</strong> is a private learning project in <strong>Flax Engine</strong> — one week, core vehicle systems built from scratch. Tyre grip, suspension response, engine torque, transmission behavior. The goal was to understand how car physics actually work before ever trusting a pre-built vehicle system again.</p>
 
-            <p><strong>Tech:</strong>
+            <p><strong>Tech:</strong></p>
             <ul>
-                <li><strong>Flax Engine</strong> – core engine for simulation and rendering.</li>
-                <li><strong>C#</strong> – implementing physics logic, input handling, and vehicle control systems.</li>
-                <li><strong>Maths & Physics</strong> – modeling forces, torque, suspension, and tire behavior.</li>
-                <li><strong>Game Programming</strong> – integrating vehicle systems for a playable sim-cade experience.</li>
+                <li><strong>Flax Engine</strong> – simulation and rendering</li>
+                <li><strong>C#</strong> – physics logic, input handling, vehicle control</li>
+                <li><strong>Maths & Physics</strong> – forces, torque, suspension, tyre behavior from first principles</li>
             </ul>
-            </p>
 
             <p><strong>What I Did</strong></p>
             <ul>
-                <li>Implemented a sim-cade car physics system handling tyre grip, suspension response, engine torque, and transmission behavior.</li>
-                <li>Built end-to-end vehicle mechanics in Flax Engine over a week for experimentation and tuning.</li>
-                <li>Developed a playable car prototype to test vehicle behavior under different scenarios.</li>
+                <li>Implemented tyre grip, suspension response, engine torque, and transmission from scratch</li>
+                <li>Built end-to-end vehicle mechanics in Flax for fast experimentation and tuning</li>
+                <li>Developed a playable prototype to test behavior under different scenarios</li>
             </ul>
 
             <p><strong>What I Learned</strong></p>
             <ul>
-                <li>Understanding tire physics, suspension modeling, and torque distribution in a simplified simulation.</li>
-                <li>Integrating physics systems in Flax Engine for rapid prototyping and testing.</li>
-                <li>Balancing realism and playability in sim-cade vehicle mechanics.</li>
-                <li>Applying math and physics principles to game programming problems effectively.</li>
+                <li>Tyre physics, suspension modeling, and torque distribution in a simplified simulation</li>
+                <li>Rapid prototyping and iteration inside Flax Engine</li>
+                <li>Balancing realism and playability in sim-cade vehicle mechanics</li>
+                <li>Applying physics principles directly to game programming problems</li>
             </ul>
-
-            <p>This project served as a hands-on experiment to deepen my understanding of vehicle physics, control systems, and simulation in game engines. It’s a private learning exercise with a focus on implementation, tuning, and system-level experimentation.</p>
         </div>
     </div>
-    
+
     <div id="node-portfolio" class="node">
         <div class="node-name">Portfolio</div>
         <div class="node-content">
-          <p><strong><a href="https://itstanpi.github.io/Portfolio/" target="_blank">Portfolio</a></strong> is my personal interactive web portfolio built entirely from scratch. It serves as both a showcase of my projects and a live demonstration of my skills in frontend graphics, animation, and creative presentation. The entire UI is rendered with WebGL using Three.js and animated using GSAP, giving it a dynamic, game-like feel.</p>
-      
-          <p><strong>Tech:</strong>
+            <p><strong><a href="https://itstanpi.github.io/Portfolio/" target="_blank">Portfolio</a></strong> — you're already inside it. Built entirely from scratch. Three.js for 3D rendering, GSAP for animations, Vite for build. The whole thing is designed to feel like an interactive experience, not a static page.</p>
+
+            <p><strong>Tech:</strong></p>
             <ul>
-              <li><strong>Three.js</strong> – for rendering custom 3D nodes, interactive transitions, and smooth WebGL-powered visuals.</li>
-              <li><strong>GSAP (GreenSock)</strong> – driving fluid animations between scenes, flips, and hover interactions.</li>
-              <li><strong>Vite</strong> – modern build toolchain for rapid development and optimized builds.</li>
-              <li><strong>JavaScript / HTML / CSS</strong> – for logic, styling, and layout structure.</li>
+                <li><strong>Three.js</strong> – custom 3D nodes, interactive transitions, WebGL visuals</li>
+                <li><strong>GSAP</strong> – fluid animations, scene flips, hover interactions</li>
+                <li><strong>Vite</strong> – rapid dev and optimized builds</li>
+                <li><strong>JavaScript / HTML / CSS</strong> – logic, styling, layout</li>
             </ul>
-          </p>
-      
-          <p><strong>What I Did</strong></p>
-          <ul>
-            <li>Designed a node-based layout system resembling Unity’s Inspector, where each section (Games, Projects, About) is modular and interactively expandable.</li>
-            <li>Used Three.js to create a lightweight custom renderer for 3D.</li>
-            <li>Implemented GSAP timelines for all major UI animations, including entrance transitions, node expansions, and hover states.</li>
-            <li>Embedded a fully playable DOSBox-powered version of <strong>SYSRA</strong> within the site using a dynamic iframe system — allowing visitors to play the game directly inside the portfolio.</li>
-            <li>Built the system with Vite for blazing-fast hot module reload and clean build outputs.</li>
-          </ul>
-      
-          <p><strong>What Makes It Unique</strong></p>
-          <ul>
-            <li>The portfolio itself is a living project — not just a static list, but an interactive playground demonstrating WebGL, UI/UX, and real-time animation skills.</li>
-            <li>Playable content like SYSRA adds an extra layer of engagement and allows visitors to directly experience my work without navigating away.</li>
-            <li>Highly optimized: lightweight assets, lazy loading of nodes, and smooth animations even on mid-tier devices.</li>
-          </ul>
-      
-          <p>Visit the live site at <a href="https://itstanpi.github.io/" target="_blank">itstanpi.github.io</a> and explore projects the way I intended them to be experienced — interactively, playfully, and with a touch of 3D flair.</p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+                <li>Designed a node-based layout — modular, interactively expandable, feels like a game UI</li>
+                <li>Used Three.js for a lightweight custom 3D renderer</li>
+                <li>Built GSAP timelines for all major animations — entrances, node expansions, hover states</li>
+                <li>Embedded a fully playable DOSBox version of <strong>SYSRA</strong> directly in the site — visit and play without leaving</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+                <li>Designing interactive UI that feels like a product, not just a showcase</li>
+                <li>Three.js scene management and camera control for UI-driven 3D</li>
+                <li>GSAP timeline orchestration for complex multi-element animations</li>
+                <li>Embedding emulated content (DOSBox) inside a live web experience</li>
+            </ul>
+
+            <p>Live at <a href="https://itstanpi.github.io/" target="_blank">itstanpi.github.io</a></p>
         </div>
     </div>
 
     <div id="node-piengine" class="node">
         <div class="node-name">Pi‑Engine</div>
         <div class="node-content">
-            <p><strong><a href="https://github.com/ItsTanPI/Pi-Engine" target="_blank">Pi‑Engine</a></strong> is a custom 2D game engine built in Java, crafted to support modular game development. It features a rendering pipeline, entity-component system, scene management, real-time input handling, and GUI overlays—with everything structured for flexibility and performance.</p>
+            <p><strong><a href="https://github.com/ItsTanPI/Pi-Engine" target="_blank">Pi‑Engine</a></strong> is a custom 2D game engine built in Java — rendering pipeline, entity-component system, scene management, real-time input, GUI overlays, all structured for flexibility and performance. Built it to actually understand what an engine is under the hood, not just how to use one.</p>
 
-            <p><strong>Tech:</strong>
+            <p><strong>Tech:</strong></p>
             <ul>
-                <li><strong>Java 11+</strong> – core engine logic, entity-management, and event handling.</li>
-                <li><strong>LWJGL / OpenGL</strong> – rendering textured sprites, tilemaps, and GUI overlays.</li>
-                <li><strong>Component-System (CS)</strong> – modular architecture with reusable components and systems.</li>
-                <li><strong>Scene Graph</strong> – hierarchical scene structure with update/render separation.</li>
-                <li><strong>Input Handling</strong> – keyboard and mouse events with customizable bindings.</li>
-                <li><strong>Resource Management</strong> – efficient loading and caching of textures, fonts, and SVG-like assets.</li>
-                <li><strong>ImGui-Java integration</strong> – debug overlays for real-time scene inspection and profiling.</li>
+                <li><strong>Java 11+</strong> – core engine logic, entity management, event handling</li>
+                <li><strong>LWJGL / OpenGL</strong> – rendering textured sprites, tilemaps, GUI overlays</li>
+                <li><strong>Component-System (CS)</strong> – modular architecture, reusable components</li>
+                <li><strong>Scene Graph</strong> – hierarchical structure with update/render separation</li>
+                <li><strong>ImGui-Java</strong> – debug overlays for live scene inspection and profiling</li>
             </ul>
-            </p>
 
             <p><strong>What I Did</strong></p>
             <ul>
-            <li>Designed an Component-System architecture with decoupled logic for rendering, physics, input, and UI systems.</li>
-            <li>Built a rendering pipeline using LWJGL and OpenGL, handling sprite batching, z-order, and camera transforms.</li>
-            <li>Implemented scene loading from JSON definitions for entities, components, and prefab data.</li>
-            <li>Integrated immediate-mode GUI via ImGui-Java to inspect entity hierarchies, component values, and live profiler stats.</li>
-            <li>Created hot-reloadable systems enabling live tweaking of assets and logic at runtime.</li>
+                <li>Designed a Component-System architecture — rendering, physics, input, and UI fully decoupled</li>
+                <li>Built a rendering pipeline in LWJGL/OpenGL with sprite batching, z-order, and camera transforms</li>
+                <li>Implemented JSON-based scene loading for entities, components, and prefab data</li>
+                <li>Integrated ImGui for live entity hierarchy inspection, component values, and profiler stats</li>
+                <li>Created hot-reloadable systems for live asset and logic tweaking at runtime</li>
             </ul>
 
             <p><strong>What I Learned</strong></p>
             <ul>
-            <li>Designing robust Component-System workflows and managing component lifecycle across varied systems.</li>
-            <li>Building efficient rendering loops.</li>
-            <li>Loading and parsing scene definitions, assets, and entity prefabs dynamically.</li>
-            <li>Using ImGui to create developer tools that enhance workflow and debugging visibility.</li>
-            <li>Structuring a game engine with modular, extensible systems—capable of supporting gameplay or simulation projects.</li>
+                <li>Component-System workflows and managing component lifecycle across varied systems</li>
+                <li>Building efficient rendering loops and batching strategies</li>
+                <li>Dynamic scene and prefab loading from JSON definitions</li>
+                <li>Using ImGui to build developer tools that actually improve workflow</li>
+                <li>Structuring a modular engine that can support gameplay or simulation projects</li>
             </ul>
 
-            <p>This engine underlies several demo projects—including a basic platformer and physics sandbox—and serves as a starting point for more complex games. You can explore the architecture, engine tools, and example scenes on <a href="https://github.com/ItsTanPI/Pi-Engine" target="_blank">GitHub</a>.</p>
+            <p>Source, engine tools, and example scenes on <a href="https://github.com/ItsTanPI/Pi-Engine" target="_blank">GitHub</a>.</p>
         </div>
     </div>
-    
+
     <div id="node-sysraasm" class="node">
         <div class="node-name">SYSRA.asm</div>
         <div class="node-content">
-          <p><strong><a href="https://github.com/ItsTanPI/SYSRA.asm" target="_blank">SYSRA.asm</a></strong> is an 8086 Assembly-language platformer prototype I developed to explore low-level game development on DOS. It demonstrates custom sprite rendering, collision detection, and direct screen-buffer management—all handcrafted without any external libraries.</p>
-      
-          <p><strong>Tech:</strong>
+            <p><strong><a href="https://github.com/ItsTanPI/SYSRA.asm" target="_blank">SYSRA.asm</a></strong> is SYSRA — but in 8086 Assembly, running on DOS. Custom sprite rendering, collision detection, direct screen-buffer management. No libraries, no engine. Just registers, interrupts, and a deep understanding of how old games actually worked.</p>
+
+            <p><strong>Tech:</strong></p>
             <ul>
-              <li>NASM / 8086 real-mode Assembly – full control over CPU instructions.</li>
-              <li>BIOS & DOS interrupts – setting video mode (0x13h), keyboard input, timing.</li>
-              <li>Direct video memory writes – drawing sprites and tiles in real-time.</li>
-              <li>Fixed-point arithmetic – subpixel movement and smooth collision handling.</li>
-              <li>Double buffering in segment:offset schema – to reduce flickering.</li>
-              <li>Custom tile & sprite system – collision map integrated into binary formats.</li>
+                <li>NASM / 8086 real-mode Assembly – full CPU instruction control</li>
+                <li>BIOS & DOS interrupts – video mode (0x13h), keyboard input, timing</li>
+                <li>Direct video memory writes – real-time sprite and tile rendering</li>
+                <li>Fixed-point arithmetic (8.8 format) – subpixel movement and smooth collision</li>
+                <li>Double buffering in segment:offset – flickering eliminated</li>
+                <li>Custom tile & sprite system – collision map baked into binary format</li>
             </ul>
-          </p>
-      
-          <p><strong>What I Did</strong></p>
-          <p>I built this from scratch to understand how classic DOS games managed graphics and input. I implemented:</p>
-          <ul>
-            <li>Real-mode memory segmentation and segment:offset pointers for tile maps.</li>
-            <li>An update-render loop that manually toggles between backbuffer and frontbuffer.</li>
-            <li>A fixed-point system (8.8 format) for smooth horizontal and vertical movement.</li>
-            <li>Collision detection by checking sprite footprint against a binary collision mask.</li>
-            <li>Keyboard polling via BIOS INT 16h to get immediate player input.</li>
-            <li>Optimizations like unrolling inner loops and using REGISTER-level sprite blit routines.</li>
-          </ul>
-      
-          <p>Through this project, I gained deep insights into:</p>
-          <ul>
-            <li>CPU pipeline and instruction latency on 8086.</li>
-            <li>Memory layout constraints in limited segment offsets.</li>
-            <li>Manual collision system design at the byte-level.</li>
-            <li>Graphics mode 0x13h (320×200, 256‑color) rendering challenges.</li>
-          </ul>
-      
-          <p>Though not a full game yet, it forms the foundation for a retro-style platformer engine. I intend to extend it with sound support (via PC speaker), level loading from data files, and rudimentary physics.</p>
-      
-          <p>Check out the full source and demos on <a href="https://github.com/ItsTanPI/SYSRA.asm" target="_blank">GitHub</a></p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+                <li>Real-mode memory segmentation and segment:offset pointers for tile maps</li>
+                <li>Manual update-render loop toggling between backbuffer and frontbuffer</li>
+                <li>Fixed-point system for smooth horizontal and vertical movement</li>
+                <li>Collision detection via sprite footprint checked against a binary collision mask</li>
+                <li>Keyboard polling via BIOS INT 16h for immediate player input</li>
+                <li>Inner loop unrolling and REGISTER-level sprite blit optimizations</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+                <li>CPU pipeline and instruction latency at the 8086 level</li>
+                <li>Memory layout constraints in limited segment offsets</li>
+                <li>Manual collision system design at the byte level</li>
+                <li>Graphics mode 0x13h (320×200, 256-color) rendering constraints and tricks</li>
+            </ul>
+
+            <p>Foundation for a retro-style platformer engine. Planning to extend with PC speaker sound, level loading, and rudimentary physics. Full source on <a href="https://github.com/ItsTanPI/SYSRA.asm" target="_blank">GitHub</a>.</p>
         </div>
     </div>
-      
+
     <div id="node-ai-racing-sim" class="node">
         <div class="node-name">AI‑Racing‑Sim</div>
         <video-data>
@@ -749,48 +737,39 @@
             <common-color>#ffffcc</common-color>
         </video-data>
         <div class="node-content">
-          <p><strong><a href="https://github.com/ItsTanPI/AI-Racing-Sim" target="_blank">AI‑Racing‑Sim</a></strong> is a 2D car racing simulator built in Python that uses reinforcement learning (PPO) to train autonomous agents for optimal racing behavior. The project includes a custom simulation environment, RL training pipeline, telemetry logging, and real-time policy rollout visualization.</p>
-      
-          <p><strong>Tech:</strong>
+            <p><strong><a href="https://github.com/ItsTanPI/AI-Racing-Sim" target="_blank">AI‑Racing‑Sim</a></strong> is a 2D car racing simulator in Python that uses reinforcement learning (PPO) to train autonomous racing agents. Custom simulation environment, RL training pipeline, telemetry logging, real-time policy visualization.</p>
+
+            <p><strong>Tech:</strong></p>
             <ul>
-              <li>Python 3.x – core simulation and training logic.</li>
-              <li>Gym-style custom environment – state-reset, step(), render() abstractions.</li>
-              <li>PPO (Proximal Policy Optimization) via Stable Baselines3 – actor‑critic RL algorithm.</li>
-              <li>NumPy – physics and vector math for 2D dynamics computations.</li>
-              <li>Matplotlib or Pygame – telemetry plotting or real-time render loops.</li>
-              <li>Checkpointing & tensorboard integration – tracking training metrics, loss curves, reward progression.</li>
+                <li>Python 3.x – simulation and training logic</li>
+                <li>Custom Gym-style environment – state-reset, step(), render() abstractions</li>
+                <li>PPO via Stable Baselines3 – actor-critic RL algorithm</li>
+                <li>NumPy – physics and vector math for 2D dynamics</li>
+                <li>Matplotlib / Pygame – telemetry plotting and real-time render</li>
+                <li>Tensorboard integration – training metrics, loss curves, reward progression</li>
             </ul>
-          </p>
-      
-          <p><strong>What I Did</strong></p>
-          <ul>
-            <li>Designed and programmed a 2D top-down track simulator including: vehicle kinematics (steer, throttle, brake), collision handling, and lap detection.</li>
-            <li>Defined observation space (e.g., heading, speed, distance-to-track-edge) and continuous action space (steering angle, acceleration).</li>
-            <li>Integrated Gym-compatible interface, enabling PPO training using Stable Baselines3.</li>
-            <li>Tuned PPO hyperparameters — batch size, learning rate, clipping epsilon — to stabilize training and avoid policy collapse.</li>
-            <li>Visualized agent performance with real-time render and saved telemetry plots (reward vs. timestep, lap time histograms).</li>
-          </ul>
-      
-          <p><strong>What I Learned</strong></p>
-          <ul>
-            <li>Fundamentals of RL training — policy gradient stability, reward shaping, handling exploration vs. exploitation.</li>
-            <li>2D physics modeling — translating wheel thrust and friction constraints into acceleration & steering dynamics.</li>
-            <li>Gym environment mechanics — ensuring correct episode termination, state normalization, and reproducibility.</li>
-            <li>Debug strategies for RL — diagnosing divergence, hyperparameter sweep impact, and reward signal clarity.</li>
-            <li>Visualization pipelines — integrating training logs, tensorboard metrics, and simulation playback.</li>
-          </ul>
-      
-          <p>This prototype serves as a foundation for more advanced work, such as:</p>
-          <ul>
-            <li>Extending to 3D physics or integrating with a real-time simulator like Gym‑Duckietown or ROS-based frameworks.</li>
-            <li>Adding multi-agent racing scenarios or curriculum learning for complex track layout generalization.</li>
-            <li>Transitioning to perception-based agents using raw pixel inputs and convolutional policies.</li>
-          </ul>
-      
-          <p>Explore the full source code, training scripts, and demo session on <a href="https://github.com/ItsTanPI/AI-Racing-Sim" target="_blank">GitHub</a>.</p>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+                <li>Built a full 2D top-down track simulator — vehicle kinematics, collision, lap detection</li>
+                <li>Defined observation and continuous action spaces (steering, acceleration)</li>
+                <li>Integrated Gym-compatible interface for PPO training via Stable Baselines3</li>
+                <li>Tuned PPO hyperparameters — batch size, learning rate, clipping epsilon</li>
+                <li>Visualized agent performance with real-time render and saved telemetry plots</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+                <li>RL training fundamentals — policy gradient stability, reward shaping, exploration vs exploitation</li>
+                <li>2D physics modeling — translating thrust and friction into real acceleration dynamics</li>
+                <li>Gym environment mechanics — episode termination, state normalization, reproducibility</li>
+                <li>RL debugging strategies — diagnosing divergence, hyperparameter impact, reward clarity</li>
+            </ul>
+
+            <p>Full source, training scripts, and demo on <a href="https://github.com/ItsTanPI/AI-Racing-Sim" target="_blank">GitHub</a>.</p>
         </div>
     </div>
-    
+
     <div id="node-2durp-godrays" class="node">
         <div class="node-name">2DURP‑GodRays</div>
         <video-data>
@@ -798,51 +777,39 @@
             <common-color>#ffffcc</common-color>
         </video-data>
         <div class="node-content">
-            <p><strong><a href="https://github.com/ItsTanPI/2DURP-GodRays" target="_blank">2DURP‑GodRays</a></strong> is a post-processing shader crafted for Unity’s URP that generates dynamic, high‑quality god ray (crepuscular rays) effects in 2D scenes. It supports customizable settings like density, decay, exposure, and blur, enabling both aesthetic and optimized performance integration. A demo is available on <a href="https://tan-pi.itch.io/2durp-godrays" target="_blank">itch.io</a>.</p>
+            <p><strong><a href="https://github.com/ItsTanPI/2DURP-GodRays" target="_blank">2DURP‑GodRays</a></strong> is a post-processing shader for Unity URP that generates dynamic god ray (crepuscular ray) effects in 2D scenes. Fully tunable — Density, Decay, Exposure, Blur, Samples. Demo on <a href="https://tan-pi.itch.io/2durp-godrays" target="_blank">itch.io</a>.</p>
 
-            <p><strong>Tech:</strong>
+            <p><strong>Tech:</strong></p>
             <ul>
-                <li>Unity Universal Render Pipeline (URP) – for lightweight scriptable rendering.</li>
-                <li>HLSL-based custom full-screen post-processing shader.</li>
-                <li>Render Features & Render Pass – injecting god‑ray pass after depth/opaque.</li>
-                <li>Depth-based radial blur – sample along vector from light source, combine decay.</li>
-                <li>Shader properties: <code>Density</code>, <code>Decay</code>, <code>Exposure</code>, <code>Samples</code>, <code>BlurRadius</code>.</li>
-                <li>Support for both 2D Sprite & 2D Lights pipelines via URP layering.</li>
-                <li>Efficient performance modes: adjustable sample count and resolution via downsampling.</li>
+                <li>Unity URP – lightweight scriptable rendering</li>
+                <li>HLSL – custom full-screen post-processing shader</li>
+                <li>ScriptableRendererFeature + ScriptableRenderPass – injected after depth/opaque pass</li>
+                <li>Depth-based radial blur – samples along vector from light source with decay</li>
+                <li>RTHandles – transient render texture management</li>
+                <li>Dynamic sample scaling and viewport downscaling for performance modes</li>
             </ul>
-            </p>
 
             <p><strong>What I Did</strong></p>
             <ul>
-            <li>Architected a URP <code>ScriptableRendererFeature</code> and <code>ScriptableRenderPass</code> for light scattering.</li>
-            <li>Worked with RTHandles and temporary render textures to isolate and blur light source masks.</li>
-            <li>Developed radial blur kernel in HLSL with decay control and multi-iteration sampling.</li>
-            <li>Exposed shader tuning parameters, enabling artists/devs to tweak visuals at runtime.</li>
-            <li>Handled performance via dynamic sample count scaling and viewport downscaling.</li>
-            <li>Created demonstration scene (sprites, parallax background) with UI toggles and keybindings: U, A/D/Arrows, Space, LMB/RMB, F :contentReference[oaicite:3]{index=3}.</li>
+                <li>Architected the URP renderer feature and render pass for light scattering</li>
+                <li>Developed the radial blur kernel in HLSL with multi-iteration decay sampling</li>
+                <li>Managed RTHandles and temporary render textures to isolate and blur light source masks</li>
+                <li>Exposed all shader parameters for runtime tweaking by artists and devs</li>
+                <li>Built a demo scene with UI toggles and keybinds for live testing</li>
             </ul>
 
             <p><strong>What I Learned</strong></p>
             <ul>
-            <li>Deep understanding of URP’s render lifecycle and passes.</li>
-            <li>Techniques for efficient radial blur and light-scattering shader design.</li>
-            <li>Memory management using RTHandles and transient RenderTextures.</li>
-            <li>Balancing visual quality and performance through sampling strategies.</li>
-            <li>Shader‑centered UI configuration for rapid iteration and testing.</li>
+                <li>URP's render lifecycle and the full ScriptableRenderPass workflow</li>
+                <li>Radial blur and light-scattering shader design techniques</li>
+                <li>RTHandle memory management and transient render texture best practices</li>
+                <li>Balancing visual quality vs performance through sampling strategies</li>
             </ul>
 
-            <p>This shader pack is a foundation for visual polish in 2D URP games. Future improvements include:</p>
-            <ul>
-            <li>Dynamic light occlusion via depth masks or stencil overlays.</li>
-            <li>Auto light positioning from scene light sources (e.g., 2D Light and Shadow Caster).</li>
-            <li>Integration with volumetric particle overlays for atmosphere enhancement.</li>
-            <li>Support for HDR and bloom integration via post-processing stack.</li>
-            </ul>
-
-            <p>Try the demo or grab the source on <a href="https://tan-pi.itch.io/2durp-godrays" target="_blank">itch.io</a> or GitHub!</p>
+            <p>Try the demo or grab the source on <a href="https://tan-pi.itch.io/2durp-godrays" target="_blank">itch.io</a> or <a href="https://github.com/ItsTanPI/2DURP-GodRays" target="_blank">GitHub</a>.</p>
         </div>
     </div>
-    
+
     <div id="node-physics-engine" class="node">
         <div class="node-name">Physics‑Engine</div>
         <video-data>
@@ -850,122 +817,232 @@
             <common-color>#ffffcc</common-color>
         </video-data>
         <div class="node-content">
-            <p><strong><a href="https://github.com/ItsTanPI/Physics-Engine" target="_blank">Physics‑Engine</a></strong> is a custom 2D physics simulation framework written in C++ with OpenGL rendering. It demonstrates core physics techniques like Verlet integration, constraint-based springs and distance joints, and simple collision detection/rendering—all built from the ground up.</p>
+            <p><strong><a href="https://github.com/ItsTanPI/Physics-Engine" target="_blank">Physics‑Engine</a></strong> is a custom 2D physics simulation in C++ with OpenGL rendering. Verlet integration, constraint-based springs and distance joints, basic collision — all from scratch. Built it because I wanted to understand constraint solvers before trusting any engine's physics black box.</p>
 
-            <p><strong>Tech:</strong>
+            <p><strong>Tech:</strong></p>
             <ul>
-                <li>C++11 – core architecture and physics logic.</li>
-                <li>GLFW + GLEW – cross-platform OpenGL context creation and function loading.</li>
-                <li>OpenGL – real-time rendering using point and line primitives for particles and joints.</li>
-                <li>Verlet Integration – stable time-stepping for particle position updates.</li>
-                <li>Constraint Solvers – spring/distance constraints implemented via positional corrections.</li>
-                <li>Basic collision detection – AABB/circle or point collision responses.</li>
-                <li>User input – interactive control via keyboard (Space for jump, Up arrow to move).</li>
-                <li>FPS locking and loop timing – fixed at 144 Hz for deterministic updates.</li>
+                <li>C++11 – core architecture and physics logic</li>
+                <li>GLFW + GLEW – cross-platform OpenGL context and function loading</li>
+                <li>OpenGL – real-time rendering with point and line primitives</li>
+                <li>Verlet Integration – stable time-stepping for particle position updates</li>
+                <li>Constraint Solvers – spring/distance constraints via positional corrections</li>
+                <li>144 Hz fixed loop – deterministic physics updates</li>
             </ul>
-            </p>
 
             <p><strong>What I Did</strong></p>
             <ul>
-            <li>Implemented a particle-based physics system using Verlet integration to simulate stable motion.</li>
-            <li>Built constraint structures: springs and fixed-distance joints connecting particles.</li>
-            <li>Developed simple collision detection and response to prevent particles/joints from passing through static obstacles.</li>
-            <li>Rendered simulation elements (particles and joints) using OpenGL’s line and point drawings.</li>
-            <li>Integrated real-time input handling: players can apply impulses (e.g. jump) via Space and steer using arrow keys.</li>
-            <li>Ensured smooth physics with 144 Hz loop, locking FPS for consistent behavior across runs.</li>
+                <li>Particle-based physics system using Verlet integration for stable motion</li>
+                <li>Spring and fixed-distance joint constraints connecting particles</li>
+                <li>Basic collision detection and response for static obstacles</li>
+                <li>Real-time OpenGL rendering of particles and joints via line/point primitives</li>
+                <li>Interactive input — Space for impulse/jump, arrow keys to steer</li>
             </ul>
 
             <p><strong>What I Learned</strong></p>
             <ul>
-            <li>Low-level physics integration methods and their stability at high update rates.</li>
-            <li>Constraint resolution techniques using positional corrections instead of force solvers.</li>
-            <li>Real-time rendering with OpenGL primitives and handling graphics context with GLFW/GLEW.</li>
-            <li>Loop timing and deterministic simulation by decoupling physics updates from frame rendering.</li>
-            <li>Interactive input mapping to physics actions for user-controlled simulation scenarios.</li>
+                <li>Physics integration methods and their stability characteristics at high update rates</li>
+                <li>Constraint resolution via positional corrections instead of force-based solvers</li>
+                <li>Real-time rendering with OpenGL primitives and GLFW/GLEW context management</li>
+                <li>Decoupling physics updates from frame rendering for deterministic simulation</li>
             </ul>
 
-            <p>This project is a foundation for advanced physics-based systems. Future extensions could include:</p>
-            <ul>
-            <li>Rigid-body dynamics with orientation/quaternion handling.</li>
-            <li>More advanced collision detection (SAT, GJK) and continuous collision response.</li>
-            <li>Soft-body structures like cloth or mesh deformation.</li>
-            <li>Adding textures, shaders for visualization, and performance profiling tools.</li>
-            </ul>
-
-            <p>See the full demo (video linked in README) and source code on <a href="https://github.com/ItsTanPI/Physics-Engine" target="_blank">GitHub</a>.</p>
+            <p>Full source and demo on <a href="https://github.com/ItsTanPI/Physics-Engine" target="_blank">GitHub</a>.</p>
         </div>
     </div>
-    
-    <div id="node-wiki-interactive" class="node">
-        <div class="node-name">Wiki-Interactive</div>
-        <div class="node-content">
-            <p><strong><a href="https://github.com/ItsTanPI/Wiki-Interactive" target="_blank">Wiki-Interactive</a></strong> is a dynamic and engaging webpage designed to educate and entertain users about our solar system. It features a playful, cartoon-style design aimed at kids and curious minds, combining interactive visuals with real physics simulation using Matter.js.</p>
 
-            <p><strong>Tech:</strong>
-            <ul>
-                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
-                <li><strong>Physics Engine:</strong> Matter.js</li>
-            </ul>
-            </p>
-
-            <p><strong>What I Did</strong></p>
-            <ul>
-                <li>Designed a cartoon-style solar system to create a fun and approachable learning experience.</li>
-                <li>Integrated the Matter.js physics engine to simulate realistic gravitational effects and motion.</li>
-                <li>Implemented parallax scrolling for depth perception and game-like presentation.</li>
-                <li>Optimized rendering of multiple interactive objects for smooth browser performance.</li>
-                <li>Used web technologies to build a fully interactive and responsive experience playable in any modern browser.</li>
-            </ul>
-
-            <p><strong>Features</strong></p>
-            <ul>
-                <li><strong>Interactive Solar System:</strong> Users can explore planets and elements with real-time motion and response.</li>
-                <li><strong>Kid-Friendly Design:</strong> Cartoon visuals and animations make learning space science fun and engaging.</li>
-                <li><strong>Physics Simulation:</strong> Motion and interactions driven by Matter.js for realism and immersion.</li>
-                <li><strong>Game-Inspired Elements:</strong> Includes parallax, dynamic object rendering, and playful motion logic.</li>
-            </ul>
-
-            <p>Built with love for both learning and games, Wiki-Interactive is an example of how web technologies and game dev tricks can be used to create educational fun.</p>
-
-            <p>Check out the demo at <a href="https://itstanpi.github.io/Wiki-Interactive/HTML/Main.html" target="_blank">Wiki-Interactive Live</a> or view the source on <a href="https://github.com/ItsTanPI/Wiki-Interactive" target="_blank">GitHub</a>.</p>
-        </div>
-
-    </div>
-    
     <div id="node-vending-machine-simulation" class="node">
-        <div class="node-name">Vending Machine Simulation</div> 
+        <div class="node-name">Vending Machine Simulation</div>
         <div class="node-content">
-            <p><strong><a href="https://github.com/ItsTanPI/Vending-machine" target="_blank">Vending Machine Simulation</a></strong> is a full-stack web application that simulates a smart vending machine experience. It features user-facing interactions via mobile, secure wallet and PIN systems, and an admin dashboard for managing inventory, sales, and pricing.</p>
+            <p><strong><a href="https://github.com/ItsTanPI/Vending-machine" target="_blank">Vending Machine Simulation</a></strong> is a full-stack web app simulating a smart vending machine — QR-based mobile UX, secure wallet and PIN system, admin dashboard for inventory, pricing, and sales analytics.</p>
 
-            <p><strong>Tech:</strong>
+            <p><strong>Tech:</strong></p>
             <ul>
                 <li><strong>Frontend:</strong> HTML, CSS, JavaScript, jQuery, Chart.js, Matter.js, Bootstrap</li>
                 <li><strong>Backend:</strong> PHP, MySQL, PHP QR Code Library</li>
-                <li><strong>APIs:</strong> Twilio (for OTP-based PIN recovery)</li>
-                <li><strong>Communication:</strong> AJAX (for real-time updates between machine and phone)</li>
+                <li><strong>APIs:</strong> Twilio (OTP-based PIN recovery)</li>
+                <li><strong>Communication:</strong> AJAX (real-time machine-to-phone updates)</li>
             </ul>
-            </p>
 
             <p><strong>What I Did</strong></p>
             <ul>
-            <li>Built a mobile-first user interface for signing in, managing wallet balance, and buying products using QR codes.</li>
-            <li>Implemented a secure wallet system where users authenticate via phone number and PIN, with OTP recovery support via Twilio.</li>
-            <li>Created the backend logic in PHP for managing user accounts, transaction records, and PIN resets.</li>
-            <li>Designed and developed an admin dashboard to visualize sales data (using Chart.js), restock items, and update product prices.</li>
-            <li>Integrated QR code generation using the PHP QR Code library for each vending machine instance.</li>
+                <li>Mobile-first UI — QR login, wallet top-up, product selection, transaction history</li>
+                <li>Secure wallet system — phone number + PIN auth with OTP recovery via Twilio</li>
+                <li>PHP backend — user accounts, transaction records, PIN reset flows</li>
+                <li>Admin dashboard — sales analytics via Chart.js, restocking, live price management</li>
+                <li>QR code generation per vending machine instance via PHP QR Code library</li>
             </ul>
 
-            <p><strong>Features</strong></p>
+            <p><strong>What I Learned</strong></p>
             <ul>
-            <li><strong>User Experience:</strong> QR login, wallet recharge, product selection, and transaction history.</li>
-            <li><strong>Security:</strong> 4-digit PIN login with OTP-based reset via SMS.</li>
-            <li><strong>Admin Tools:</strong> Sales filtering by branch/date/product, bar graph analytics, product restocking, and live inventory control.</li>
-            <li><strong>Responsive Design:</strong> Optimized for both mobile and desktop access via Bootstrap and AJAX-powered updates.</li>
+                <li>Full-stack architecture — designing a system from mobile UI to database layer</li>
+                <li>Real-time AJAX communication between client and server</li>
+                <li>Third-party API integration (Twilio SMS) for production-style auth flows</li>
+                <li>Building admin tooling — data visualization, inventory control, access management</li>
             </ul>
 
-            <p>Assets courtesy of <strong>Freepik</strong>. Built to simulate how modern vending machines can integrate mobile-first UX with real-time inventory and secure digital payments.</p>
+            <p>Explore the code on <a href="https://github.com/ItsTanPI/Vending-machine" target="_blank">GitHub</a>.</p>
+        </div>
+    </div>
 
-            <p>Explore the code and try the simulation on <a href="https://github.com/ItsTanPI/Vending-machine" target="_blank">GitHub</a>.</p>
+    <div id="node-wiki-interactive" class="node">
+        <div class="node-name">Wiki-Interactive</div>
+        <div class="node-content">
+            <p><strong><a href="https://github.com/ItsTanPI/Wiki-Interactive" target="_blank">Wiki-Interactive</a></strong> is an interactive solar system webpage — cartoon-style, kid-friendly, real physics simulation via Matter.js. Game dev tricks applied to education. Parallax scrolling, dynamic object rendering, motion-driven interactivity, all in the browser.</p>
+
+            <p><strong>Tech:</strong></p>
+            <ul>
+                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
+                <li><strong>Physics:</strong> Matter.js</li>
+            </ul>
+
+            <p><strong>What I Did</strong></p>
+            <ul>
+                <li>Designed a cartoon-style solar system for an approachable learning experience</li>
+                <li>Integrated Matter.js for real gravitational effects and object motion</li>
+                <li>Implemented parallax scrolling for depth and game-like feel</li>
+                <li>Optimized rendering of multiple interactive objects for smooth browser performance</li>
+            </ul>
+
+            <p><strong>What I Learned</strong></p>
+            <ul>
+                <li>Applying game dev rendering and interaction patterns to web-based educational content</li>
+                <li>Matter.js physics integration and tuning for visual appeal over strict realism</li>
+                <li>Performance optimization for multi-object browser rendering</li>
+            </ul>
+
+            <p>Live demo at <a href="https://itstanpi.github.io/Wiki-Interactive/HTML/Main.html" target="_blank">Wiki-Interactive Live</a> — source on <a href="https://github.com/ItsTanPI/Wiki-Interactive" target="_blank">GitHub</a>.</p>
+        </div>
+    </div>
+    
+    <!-- Community -->
+    <div id="node-community" class="node">
+        <div class="node-name">Community</div>
+        <div class="node-content">
+            <div class="child-link" data-target="node-workshop">Workshop & Mentorship</div>
+            <div class="child-link" data-target="node-presentation">Technical Presentation</div>
+            <div class="child-link" data-target="node-gamejam-win">Game Jam Win</div>
+            <div class="child-link" data-target="node-atom">Atom Community</div>
+            <div class="child-link" data-target="node-ggj">Global Game Jam</div>
+        </div>
+    </div>
+
+    <div id="node-gamejam-win" class="node">
+        <div class="node-name">Game Jam Winner</div>
+        <image-data>
+            <image-url>textures/Profile.png</image-url>
+            <common-color>#cccccc</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><strong>1st Place – IMMERSIVEX '26</strong><br>
+            Sri Ramakrishna Engineering College (SREC)</p>
+
+            <p>
+                Secured 1st place among 50+ participants in a competitive game jam.
+                Built a complete and polished game under strict time constraints.
+            </p>
+
+            <p>
+                The project was judged by industry professionals and was recognized mainly for visual quality, technical execution, and overall feel.
+            </p>
+
+            <p>
+                Won a ₹10,000 prize. More than that, this was my first proper on-stage win after years of grinding.
+            </p>
+        </div>
+    </div>
+
+    <div id="node-ggj" class="node">
+        <div class="node-name">Global Game Jam</div>
+        <image-data>
+            <image-url>textures/Profile.png</image-url>
+            <common-color>#cccccc</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><strong>Participant – Global Game Jam</strong></p>
+
+            <p>
+                Took part in Global Game Jam, where developers from all over the world build games within a very short time frame.
+            </p>
+
+            <p>
+                It’s a good test of how fast you can think, adapt ideas, and actually finish something under pressure.
+            </p>
+
+            <p>
+                These jams are where I experiment a lot and push my limits, especially with visuals and execution.
+            </p>
+        </div>
+    </div>
+
+    <div id="node-atom" class="node">
+        <div class="node-name">Community Volunteer</div>
+        <image-data>
+            <image-url>textures/Profile.png</image-url>
+            <common-color>#cccccc</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><strong>ATOM Community</strong></p>
+
+            <p>
+                I actively help people who are getting into game development, engine development, and graphics programming.
+            </p>
+
+            <p>
+                Most of the time it’s answering doubts, explaining concepts, or helping them debug stuff they are stuck on.
+            </p>
+
+            <p>
+                I try to make things simpler for others because I know how confusing this space can get when you start.
+            </p>
+        </div>
+    </div>
+    
+    <div id="node-workshop" class="node">
+        <div class="node-name">Speaker & Mentor</div>
+        <image-data>
+            <image-url>textures/Profile.png</image-url>
+            <common-color>#cccccc</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><strong>Game Development Basics Workshop</strong><br>
+            FOSS Club, CIT</p>
+
+            <p>
+                I led a full hands-on workshop for 100+ students where I taught the fundamentals of game development from scratch.
+                I didn’t just explain theory, I made sure everyone actually built something.
+            </p>
+
+            <p>
+                By the end of the session, every participant had a working game. That was the main focus — not just listening, but doing.
+            </p>
+
+            <p>
+                This also helped me get better at breaking down complex systems into simple ideas that beginners can understand.
+            </p>
+        </div>
+    </div>
+
+    <div id="node-presentation" class="node">
+        <div class="node-name">Technical Presentation</div>
+        <image-data>
+            <image-url>textures/Profile.png</image-url>
+            <common-color>#cccccc</common-color>
+        </image-data>
+        <div class="node-content">
+            <p><strong>Pi-Engine Showcase</strong><br>
+            FOSS Conference, CIT</p>
+
+            <p>
+                I presented my custom-built Pi-Engine to 100+ attendees, explaining how the engine is structured and how different systems work together.
+            </p>
+
+            <p>
+                Covered things like rendering pipeline, component system, and overall workflow — basically how I think when building an engine.
+            </p>
+
+            <p>
+                I also showcased multiple projects built using the engine to prove it’s actually usable and not just an experiment.
+            </p>
         </div>
     </div>
 
